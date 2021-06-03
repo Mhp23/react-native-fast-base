@@ -1,6 +1,6 @@
 {
   "name": "react-native-fast-base",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Easier and faster developing your React Native apps",
   "main": "src/index.ts",
   "keywords": [
@@ -14,12 +14,11 @@
     "layouts"
   ],
   "scripts": {
-    "test": "jest",
-    "build": "tsc"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Mhp23/react-native-faster-base.git"
+    "url": "git+https://github.com/Mhp23/react-native-fast-base.git"
   },
   "author": "",
   "license": "MIT",
@@ -74,7 +73,7 @@
     }
   },
   "bugs": {
-    "url": "https://github.com/Mhp23/react-native-faster-base/issues"
+    "url": "https://github.com/Mhp23/react-native-fast-base/issues"
   },
-  "homepage": "https://github.com/Mhp23/react-native-faster-base#readme"
+  "homepage": "https://github.com/Mhp23/react-native-fast-base#readme"
 }
