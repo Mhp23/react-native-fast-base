@@ -14,12 +14,11 @@
     "layouts"
   ],
   "scripts": {
-    "test": "jest",
-    "build": "tsc"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Mhp23/react-native-faster-base.git"
+    "url": "git+https://github.com/Mhp23/react-native-fast-base.git"
   },
   "author": "",
   "license": "MIT",
