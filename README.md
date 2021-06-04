@@ -135,7 +135,7 @@ const App = ()=> {
 export default App;
 ```
 ##### Class Component
-If you are using class Component , for accessing theme as props , first you must connect **each** theme and Components by **withTheme**. if you haven't custom theme just pass your Component to that and in the another Components you are able to access to your the by **this.props.theme**:
+If you are using class Component , for accessing theme as props , first you must connect **each** theme and Components by **withTheme**. if you haven't custom theme just pass your Component to that and in the another Components you are able to access to your the by **this.props.theme** , also if you have use functional Components beside class Components , you must set your custom theme in the ThemeProvider:
 
 ```js
 //...
@@ -189,10 +189,98 @@ export default withTheme(App, MyCustomTheme);
 By the default if the phone was be dark mode , your app theme will change to dark mode , if you don't want to this happened  it, add **ignorePhoneMode={true}** to the ThemeProvider.
 
 ### Wrapper
+It's a flexible Component that with having common property can help you doing easeir create your Component and save your time!
+
+|Name|Type|Discription|
+|:---|:---|:---|
+|flex|boolean|if it's be ```true``` will added ```flex:1``` , default is ```false```|
+|mode|string|it's specifies the direction , by the default is ```normal``` and you can specifies direction one of the ```row , row-reverse , column , column-reverse```|
+|alignX|string|```alignItems: string```|
+|alignY|string|```justifyContent: string```|
+|spaceY|number|```paddingVertical: number```|
+|spaceX|number|```paddingHorizontal: number```|
+|spaceEnd|number|```paddingEnd: number```|
+|spaceStart|number|```paddingStart: number```|
+|spaceTop|number|```paddingTop: number```|
+|spaceBottom|number|```paddingBottom: number```|
+
+And all **View** props.
+
+```js
+//...
+import { Wrapper } from 'react-native-fast-base';
+  //...
+  <Wrapper>
+    {
+      //children
+    }
+  </Wrapper>
+  //...
+```
+
 ### Container
+Container fill the screen and the background of that depends on your theme mode. It's was extended from Wrapper and have all props of that.
+
+```js
+//...
+import { Container } from 'react-native-fast-base';
+  //...
+  <Container>
+    {
+      //children
+    }
+  </Container>
+  //...
+```
+
 ### Content
+Content was extneded of [react-native-keyboard-aware-scroll-view](https://github.com/APSL/react-native-keyboard-aware-scroll-view) , you can see the props of that on the page repo.
+
+```js
+//...
+import { 
+  Container,
+  Content
+} from 'react-native-fast-base';
+  //...
+  <Container>
+    <Content>
+      {
+        //children
+      }
+    <Content/>
+  </Container>
+  //...
+```
 ### Icon
+Icon in react-native-fast-base it's very help to you to easier usage of the Icons , this packgae support all Icons in [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons). Also you don't need parent view or wrapper for that you can use from all **Wrapper** props for controlling that , for example:
+
+```js
+//...
+import { Icon } from 'react-native-fast-base';
+  //...
+      <Icon
+      alignX="center"
+      alignY="center"
+      name="user"
+      type="AntDesign"
+      size={2}/>
+  //...
+```
+It should be noted all Icons and Text font Size are responsive by [react-native-responsive-dimensions](https://github.com/DaniAkash/react-native-responsive-dimensions). The number is not default react native font size , you can find more information about it on the page repo.
+
 ### Text
+
+|Name|Type|Discription|
+|:---|:---|:---|
+|font|string|```fontFamily: string```|
+|size|number|```fontSize: responsiveFontSize(number)``` , default is 1.5|
+|color|string|color of text , default is ```colors.text``` in the your theme. Depends on the theme mode will change.|
+|alignX|string|```textAlign: string```, default is ```auto```|
+|lineHeight|number|lineHeight between lines|
+
+And all react native **Text** props.
+
 ### Header
 ### Divider
 ### Right
