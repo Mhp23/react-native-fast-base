@@ -18,23 +18,23 @@ If your npm version is < 5 add *--save* to end of npm command
 
 ## What is this package?
 
-It's the package help you faster developing your app. For example with added this package to your project you don't need to ***View*** anymore , you are able to use ***Wrapper***. With features that help you easier doing developing proces. (Wrapper extned by ViewProps). By the following  this instrucations , you capble of explore more informations about it!
+It's the package help you faster developing your app. For example with added this package to your project you don't need to ***View*** anymore , you are able to use ***Wrapper***. With features that help you easier doing developing . (Wrapper extened of View).Also it's provide ThemeProvider for handling theme mode , by the following  this instrucations , you can explore more informations about it!
 
 ## Components included:
 
-[ThemeProvider](#theme-provider)<br/>
-[Wrapper](#wrapper)<br/>
-[Container](#container)<br/>
-[Content](#content)<br/>
-[Icon](#icon)<br/>
-[Text](#text)<br/>
-[Header](#header)<br/>
-[Divider](#divider)<br/>
-[Right](#right)<br/>
-[Center](#center)<br/>
-[Left](#left)<br/>
-[Spacer](#spacer)<br/>
-[Touchable](#touchable)
+- [ThemeProvider](#theme-provider)<br/>
+- [Wrapper](#wrapper)<br/>
+- [Container](#container)<br/>
+- [Content](#content)<br/>
+- [Icon](#icon)<br/>
+- [Text](#text)<br/>
+- [Header](#header)<br/>
+- [Divider](#divider)<br/>
+- [Right](#left-center-right)<br/>
+- [Center](#left-center-right)<br/>
+- [Left](#left-center-right)<br/>
+- [Spacer](#spacer)<br/>
+- [Touchable](#touchable)
 
 ## Usage
 
@@ -219,7 +219,7 @@ import { Wrapper } from 'react-native-fast-base';
 ```
 
 ### Container
-Container fill the screen and the background of that depends on your theme mode. It's was extended from Wrapper and have all props of that.
+Container fill the screen and default background of that is ```colors.background``` and the background of that depends on your theme mode. It's was extended of **Wrapper**.
 
 ```js
 //...
@@ -253,7 +253,7 @@ import {
   //...
 ```
 ### Icon
-Icon in react-native-fast-base it's very help to you to easier usage of the Icons , this packgae support all Icons in [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons). Also you don't need parent view or wrapper for that you can use from all **Wrapper** props for controlling that , for example:
+Icon in react-native-fast-base it's very help to you to easier usage of the Icons , this packgae support all Icons in [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons). Also you don't need parent view or wrapper for that you can use of all **Wrapper** props for controlling that , for example:
 
 ```js
 //...
@@ -267,7 +267,7 @@ import { Icon } from 'react-native-fast-base';
       size={2}/>
   //...
 ```
-It should be noted all Icons and Text font Size are responsive by [react-native-responsive-dimensions](https://github.com/DaniAkash/react-native-responsive-dimensions). The number is not default react native font size , you can find more information about it on the page repo.
+It should be noted all Icons and Text font size are responsive by [react-native-responsive-dimensions](https://github.com/DaniAkash/react-native-responsive-dimensions). The number is not default react native font size , you can find more information about it on the page repo.
 
 ### Text
 
@@ -282,9 +282,105 @@ It should be noted all Icons and Text font Size are responsive by [react-native-
 And all react native **Text** props.
 
 ### Header
+
+```js
+//...
+import { Header } from 'react-native-fast-base';
+  //...
+  <Header>
+    {
+      //children
+    }
+  </Header>
+  //...
+```
+
+|Name|Type|Discription|
+|:---|:---|:---|
+|height|number|```height: number```|
+|transparent|boolean|default is ```false```|
+
+And all **Wrapper** props.
+
 ### Divider
-### Right
-### Center
-### Left
+
+```js
+//...
+import { Divider } from 'react-native-fast-base';
+  //...
+  <Divider>
+    {
+      //children
+    }
+  </Divider>
+  //...
+```
+
+|Name|Type|Discription|
+|:---|:---|:---|
+|mode|border or padding|default is border|
+|width|number|```borderWidth: number```|
+|spaceY|number|```paddingVertical: number```|
+|spaceTop|number|```paddingTop: number```|
+|spaceBottom|number|```paddingBottom: number```|
+
+### Left Center Right  
+Because usually these items use together, we explain together:
+
+```js
+//...
+import { 
+  Wrapper,
+  Left,
+  Center,
+  Right
+} from 'react-native-fast-base';
+  //...
+  <Wrapper mode="row">
+    <Left>
+        {
+            //children
+        }
+    </Left>
+    <Center>
+        {
+            //children
+        }
+    </Center>
+    <Right>
+        {
+            //children
+        }
+    </Right>
+  </Wrapper>
+  //...
+```
+All Left , Center and Right have Wrapper props.
+
 ### Spacer
+Sometimes you want to separate two elements that was seated together in the line , by this Component you are able to create space or separate them by your custom symbols (default symbol in the custom mode is ```.```):
+
+```js
+//...
+import { 
+  Wrapper,
+  Spacer
+} from 'react-native-fast-base';
+  //...
+  <Wrapper mode="row">
+    {
+      //An element
+    }
+    <Spacer/>
+    <Spacer mode="custom"/>
+    <Spacer mode="custom" customSymbol={'$'}/>
+    {
+      //Another element
+    }
+  </Wrapper>
+  //...
+```
+
 ### Touchable
+The Touchable button is **TouchableNativeFeedback** for android platform (version > 21) and **TouchableHighlight** for ios platform , you can see the props of each that from offcial [react native website](https://reactnative.dev)
+
