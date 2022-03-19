@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Touchable component should match snapshot 1`] = `
+<View
+  accessibilityRole="button"
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "borderRadius": 5,
+      "justifyContent": "center",
+      "opacity": 1,
+      "padding": 10,
+    }
+  }
+  testID="FAST_BASE_BUTTON"
+>
+  <Text>
+    Hello Touchable!
+  </Text>
+</View>
+`;

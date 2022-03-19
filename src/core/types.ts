@@ -6,8 +6,9 @@ import {
   ViewProps,
   TextProps as NativeTextProps,
   GestureResponderEvent,
-  TouchableWithoutFeedbackProps,
   TextStyle,
+  TouchableOpacityProps,
+  ActivityIndicatorProps,
 } from 'react-native';
 
 export type ColorsPropsType = {
@@ -159,15 +160,20 @@ export interface TextProps extends NativeTextProps {
   alignX?: TextAlignType;
   onPress?: (event: GestureResponderEvent) => void;
 }
-export interface TouchableProps extends TouchableWithoutFeedbackProps {
-  underlayColor?: string;
-  rippleColor?: string;
-  borderLess?: boolean;
+export interface TouchableProps extends TouchableOpacityProps {
   /**
-   * The flag to allowing background in TouchableNativeFeedback
-   * @platform android
+   * Touchable button border radius number
+   * @type {number}
+   * @default 5
    */
-  hasBackground?: boolean;
+  radius?: number;
+  loading?: boolean;
+  hasShadow?: boolean;
+  hasBorder?: boolean;
+  borderColor?: string;
+  loadingColor?: string;
+  disabledColor?: string;
+  loadingProps?: ActivityIndicatorProps;
 }
 export interface SpacerProps {
   size?: number;
