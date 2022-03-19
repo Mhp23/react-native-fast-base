@@ -1,15 +1,16 @@
 import React from 'react';
 import {Wrapper} from '../Wrapper';
 import {WrapperProps} from '../../core';
-import {StyleProp, ViewStyle} from 'react-native';
 
 const Right: React.FC<WrapperProps> = ({children, style, ...rest}) => {
-  const leftStyles: StyleProp<ViewStyle> = {
-    alignSelf: 'center',
-  };
-
   return (
-    <Wrapper style={[leftStyles, style]} alignX="flex-end" flex {...rest}>
+    <Wrapper
+      flex
+      style={style}
+      alignX="flex-end"
+      alignSelf="center"
+      testID="FAST_BASE_RIGHT"
+      {...rest}>
       {children}
     </Wrapper>
   );
