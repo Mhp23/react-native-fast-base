@@ -1,8 +1,8 @@
 import React from 'react';
-import {DividerProps} from '../core/types';
+import {Wrapper} from '../Wrapper';
+import {useTheme} from '../../hooks';
+import {DividerProps} from '../../core';
 import {StyleProp, ViewStyle} from 'react-native';
-import {useTheme} from '../hooks';
-import Wrapper from './Wrapper';
 
 const defaultProps: DividerProps = {
   width: 0.5,

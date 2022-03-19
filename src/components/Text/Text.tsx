@@ -1,13 +1,13 @@
 import React from 'react';
-import {TextProps} from '../core/types';
 import {
   StyleProp,
-  Text as NativeText,
   TextStyle,
   TouchableOpacity,
+  Text as NativeText,
 } from 'react-native';
+import {useTheme} from '../../hooks';
+import {TextProps} from '../../core';
 import {responsiveFontSize} from 'react-native-responsive-dimensions';
-import {useTheme} from '../hooks';
 
 const defaultProps: TextProps = {
   alignX: 'auto',

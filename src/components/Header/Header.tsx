@@ -1,7 +1,7 @@
 import React from 'react';
-import Wrapper from './Wrapper';
-import {HeaderProps} from '../core/types';
-import {useTheme} from '../hooks';
+import {Wrapper} from '../Wrapper';
+import {useTheme} from '../../hooks';
+import {HeaderProps} from '../../core';
 import {StyleProp, ViewStyle} from 'react-native';
 
 const defaultProps: HeaderProps = {

@@ -1,10 +1,10 @@
 import React from 'react';
-import {TouchableProps} from '../core/types';
-import {useTheme} from '../hooks';
+import {useTheme} from '../../hooks';
+import {TouchableProps} from '../../core';
 import {
-  TouchableNativeFeedback,
-  TouchableHighlight,
   Platform,
+  TouchableHighlight,
+  TouchableNativeFeedback,
 } from 'react-native';
 
 const Touchable: React.FC<TouchableProps> = ({

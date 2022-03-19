@@ -1,7 +1,7 @@
 import React from 'react';
+import {ContentProps} from '../../core';
 import {SafeAreaView, StyleProp, ViewStyle} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {ContentProps} from '../core/types';
 
 const Content: React.FC<ContentProps> = ({
   children,

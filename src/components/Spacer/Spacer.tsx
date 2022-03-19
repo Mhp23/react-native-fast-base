@@ -1,8 +1,8 @@
 import React from 'react';
-import Wrapper from './Wrapper';
-import Text from './Text';
-import {SpacerProps} from '../core/types';
-import {useTheme} from '../hooks';
+import {Text} from '../Text';
+import {Wrapper} from '../Wrapper';
+import {useTheme} from '../../hooks';
+import {SpacerProps} from '../../core';
 
 const defaultProps: SpacerProps = {
   spaceX: 5,

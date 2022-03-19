@@ -1,9 +1,8 @@
 import React from 'react';
-import Wrapper from './Wrapper';
-
+import {Wrapper} from '../Wrapper';
+import {useTheme} from '../../hooks';
+import {WrapperProps} from '../../core';
 import {StyleProp, ViewStyle, Platform, Dimensions} from 'react-native';
-import {WrapperProps} from '../core/types';
-import {useTheme} from '../hooks';
 
 const DEVICE_HEIGHT = Dimensions.get('window').height;
 

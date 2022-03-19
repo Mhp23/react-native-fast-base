@@ -1,7 +1,6 @@
 import React from 'react';
-
+import {WrapperProps} from '../../core';
 import {StyleProp, View, ViewStyle} from 'react-native';
-import {WrapperProps} from '../core/types';
 
 const defaultProps: WrapperProps = {
   mode: 'normal',
