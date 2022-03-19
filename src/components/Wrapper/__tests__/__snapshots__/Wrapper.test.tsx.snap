@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Wrapper component should match snapshot 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": undefined,
+        "alignSelf": undefined,
+        "flex": undefined,
+        "justifyContent": undefined,
+        "paddingBottom": undefined,
+        "paddingEnd": undefined,
+        "paddingHorizontal": undefined,
+        "paddingStart": undefined,
+        "paddingTop": undefined,
+        "paddingVertical": undefined,
+      },
+      undefined,
+    ]
+  }
+  testID="FAST_BASE_WRAPPER"
+>
+  <Text />
+</View>
+`;
+
+exports[`Wrapper component should render padding for both of numbers and percent string 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": undefined,
+        "alignSelf": undefined,
+        "flex": undefined,
+        "justifyContent": undefined,
+        "paddingBottom": "5%",
+        "paddingEnd": 7,
+        "paddingHorizontal": 4,
+        "paddingStart": "2%",
+        "paddingTop": 10,
+        "paddingVertical": 8,
+      },
+      undefined,
+    ]
+  }
+  testID="FAST_BASE_WRAPPER"
+/>
+`;

@@ -74,6 +74,7 @@ export interface ProviderProps {
   ignorePhoneMode?: boolean;
 }
 export interface WrapperProps extends ViewProps {
+  alignSelf?: 'auto' | FlexAlignType;
   /**
    * Wrapper mode is property same of flexDirection
    * @type {WrapperModePropType}
@@ -81,13 +82,17 @@ export interface WrapperProps extends ViewProps {
   mode?: WrapperModePropType;
   alignY?: FlexAlignYType;
   alignX?: FlexAlignType;
-  spaceTop?: number;
-  spaceBottom?: number;
-  spaceStart?: number;
-  spaceEnd?: number;
-  spaceY?: number;
-  spaceX?: number;
-  flex?: boolean;
+  spaceTop?: number | string;
+  spaceBottom?: number | string;
+  spaceStart?: number | string;
+  spaceEnd?: number | string;
+  spaceY?: number | string;
+  spaceX?: number | string;
+  /**
+   * Flex attribute has two type, if that be boolean and true will assign flex: 1 to Wrapper.
+   * It can be number so will assign to that flex that recived from props.
+   */
+  flex?: number | boolean;
 }
 export interface IconProps extends WrapperProps {
   /**

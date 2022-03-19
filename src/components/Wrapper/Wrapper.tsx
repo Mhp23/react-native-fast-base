@@ -13,39 +13,36 @@ const Wrapper: React.FC<WrapperProps> = ({
   style,
   alignX,
   alignY,
-  children,
   spaceX,
   spaceY,
-  spaceEnd,
-  spaceStart,
+  children,
   spaceTop,
+  spaceEnd,
+  alignSelf,
+  spaceStart,
   spaceBottom,
   ...rest
 }) => {
+  const wrapperFlex = typeof flex === 'boolean' && flex ? 1 : flex || undefined;
+
   const wrapperStyles: StyleProp<ViewStyle> = {
+    alignSelf,
+    flex: wrapperFlex,
     justifyContent: alignY,
     alignItems: alignX,
-    ...(spaceY
-      ? {paddingVertical: spaceY}
-      : {
-          paddingTop: spaceTop,
-          paddingBottom: spaceBottom,
-        }),
-    ...(spaceX
-      ? {paddingHorizontal: spaceX}
-      : {
-          paddingEnd: spaceEnd,
-          paddingStart: spaceStart,
-        }),
-    ...(flex && {flex: 1}),
+    paddingVertical: spaceY,
+    paddingTop: spaceTop,
+    paddingBottom: spaceBottom,
+    paddingHorizontal: spaceX,
+    paddingEnd: spaceEnd,
+    paddingStart: spaceStart,
     ...(mode !== 'normal' && {
       flexDirection: mode,
       flexWrap: 'wrap',
     }),
   };
-
   return (
-    <View style={[wrapperStyles, style]} {...rest}>
+    <View testID="FAST_BASE_WRAPPER" style={[wrapperStyles, style]} {...rest}>
       {children}
     </View>
   );
