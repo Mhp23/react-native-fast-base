@@ -2,7 +2,7 @@ import React from 'react';
 import {Wrapper} from '../Wrapper';
 import {useTheme} from '../../hooks';
 import {DividerProps} from '../../core';
-import {StyleProp, ViewStyle} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const defaultProps: DividerProps = {
   width: 0.5,
@@ -10,30 +10,33 @@ const defaultProps: DividerProps = {
 };
 
 const Divider: React.FC<DividerProps> = ({
+  mode,
+  color,
   style,
   width,
-  mode,
   spaceY,
+  spaceX,
   spaceTop,
   spaceBottom,
 }) => {
   const {colors} = useTheme();
 
-  const dividerStyle: StyleProp<ViewStyle> = [
-    mode === 'border' && {
-      borderWidth: width,
-      borderColor: colors?.flat,
-    },
-  ];
-
   return (
     <Wrapper
-      style={[dividerStyle, style]}
-      {...{
-        spaceY,
-        spaceBottom,
-        spaceTop,
-      }}
+      testID="FAST_BASE_DIVIDER"
+      style={StyleSheet.flatten([
+        {
+          marginVertical: spaceY,
+          marginHorizontal: spaceX,
+          marginTop: spaceTop,
+          marginBottom: spaceBottom,
+        },
+        mode === 'border' && {
+          borderWidth: width,
+          borderColor: color || colors?.secondText,
+        },
+        style,
+      ])}
     />
   );
 };

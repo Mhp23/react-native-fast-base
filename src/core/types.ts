@@ -195,12 +195,15 @@ export interface DividerProps {
    */
   mode?: DividerPropsType;
   spaceY?: number;
+  spaceX?: number;
   spaceTop?: number;
   spaceBottom?: number;
   /**
    * Border width size
    * @type {number}
+   * @default 0.5
    */
   width?: number;
+  color?: string;
   style?: StyleProp<ViewStyle>;
 }

@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Divider component should match snapshot 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": undefined,
+        "alignSelf": undefined,
+        "flex": undefined,
+        "justifyContent": undefined,
+        "paddingBottom": undefined,
+        "paddingEnd": undefined,
+        "paddingHorizontal": undefined,
+        "paddingStart": undefined,
+        "paddingTop": undefined,
+        "paddingVertical": undefined,
+      },
+      Object {
+        "borderColor": "#626567",
+        "borderWidth": 1,
+        "marginBottom": undefined,
+        "marginHorizontal": undefined,
+        "marginTop": undefined,
+        "marginVertical": undefined,
+      },
+    ]
+  }
+  testID="FAST_BASE_DIVIDER"
+/>
+`;
