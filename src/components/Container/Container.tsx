@@ -1,15 +1,21 @@
 import React from 'react';
-import {Wrapper} from '../Wrapper';
 import {useTheme} from '../../hooks';
-import {WrapperProps} from '../../core';
-import {StyleProp, ViewStyle, Platform, Dimensions} from 'react-native';
+import {
+  Platform,
+  ViewProps,
+  StyleProp,
+  ViewStyle,
+  Dimensions,
+  SafeAreaView,
+} from 'react-native';
 
 const DEVICE_HEIGHT = Dimensions.get('window').height;
 
-const Container: React.FC<WrapperProps> = ({children, style}) => {
+const Container: React.FC<ViewProps> = ({children, style}) => {
   const {colors} = useTheme();
 
   const containerStyles: StyleProp<ViewStyle> = {
+    flex: 1,
     backgroundColor: colors?.background,
     height: Platform.select({
       android: DEVICE_HEIGHT,
@@ -18,9 +24,9 @@ const Container: React.FC<WrapperProps> = ({children, style}) => {
   };
 
   return (
-    <Wrapper style={[containerStyles, style]} flex>
+    <SafeAreaView testID="FAST_BASE_CONTAINER" style={[containerStyles, style]}>
       {children}
-    </Wrapper>
+    </SafeAreaView>
   );
 };
 
