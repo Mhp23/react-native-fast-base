@@ -1,8 +1,8 @@
 import React from 'react';
 import {Wrapper} from '../Wrapper';
-import {WrapperProps} from '../../core';
+import {SpaceXYProps} from '../../core';
 
-const Center: React.FC<WrapperProps> = ({children, style, ...rest}) => {
+const Center: React.FC<SpaceXYProps> = ({children, style, ...rest}) => {
   return (
     <Wrapper
       flex
