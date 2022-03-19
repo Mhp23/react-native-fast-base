@@ -7,6 +7,7 @@ import {
   TextProps as NativeTextProps,
   GestureResponderEvent,
   TouchableWithoutFeedbackProps,
+  TextStyle,
 } from 'react-native';
 
 export type ColorsPropsType = {
@@ -105,12 +106,25 @@ export interface IconProps extends WrapperProps {
    */
   size: number;
   color?: string;
+  style?: StyleProp<TextStyle>;
+  buttonStyle?: StyleProp<ViewStyle>;
+  wrapperStyle?: StyleProp<ViewStyle>;
   /**
    * Icons collections types , that is supported in <https://github.com/oblador/react-native-vector-icons>
    * @type {IconPropsType}
    */
   type?: IconPropsType;
+  disabled?: boolean;
+  disabledColor?: string;
+  /**
+   * Determines what the opacity of the wrapped view should be when touch is active.
+   * @default 0.6
+   */
+  activeOpacity?: number;
   onPress?: (event: GestureResponderEvent) => void;
+  onPressIn?: (event: GestureResponderEvent) => void;
+  onPressOut?: (event: GestureResponderEvent) => void;
+  onLongPress?: (event: GestureResponderEvent) => void;
 }
 export interface HeaderProps extends WrapperProps {
   height?: number;

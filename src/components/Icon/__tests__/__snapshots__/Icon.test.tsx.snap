@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon component should match snapshot 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": undefined,
+        "alignSelf": undefined,
+        "flex": undefined,
+        "justifyContent": undefined,
+        "paddingBottom": undefined,
+        "paddingEnd": undefined,
+        "paddingHorizontal": undefined,
+        "paddingStart": undefined,
+        "paddingTop": undefined,
+        "paddingVertical": undefined,
+      },
+      undefined,
+    ]
+  }
+  testID="FAST_BASE_ICON_WRAPPER"
+>
+  <Text
+    allowFontScaling={false}
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontSize": 45.89389937671454,
+        },
+        undefined,
+        Object {
+          "fontFamily": "Feather",
+          "fontStyle": "normal",
+          "fontWeight": "normal",
+        },
+        Object {},
+      ]
+    }
+    testID="FAST_BASE_ICON"
+  >
+    
+  </Text>
+</View>
+`;
+
+exports[`Icon component should render button as wrapper for icon component 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": undefined,
+        "alignSelf": undefined,
+        "flex": undefined,
+        "justifyContent": undefined,
+        "paddingBottom": undefined,
+        "paddingEnd": undefined,
+        "paddingHorizontal": undefined,
+        "paddingStart": undefined,
+        "paddingTop": undefined,
+        "paddingVertical": undefined,
+      },
+      undefined,
+    ]
+  }
+  testID="FAST_BASE_ICON_WRAPPER"
+>
+  <View
+    accessibilityRole="button"
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+    testID="FAST_BASE_ICON_BUTTON"
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontSize": 45.89389937671454,
+          },
+          undefined,
+          Object {
+            "fontFamily": "Feather",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+      testID="FAST_BASE_ICON"
+    >
+      
+    </Text>
+  </View>
+</View>
+`;

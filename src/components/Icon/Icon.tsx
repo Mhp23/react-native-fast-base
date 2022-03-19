@@ -1,87 +1,68 @@
 import React from 'react';
-import {Wrapper} from '../..';
+import {Wrapper} from '../Wrapper';
 import {IconProps} from '../../core';
 import {useTheme} from '../../hooks';
+import iconSelector from './iconSelector';
 import {TouchableOpacity} from 'react-native';
-import Zocial from 'react-native-vector-icons/Zocial';
-import Entypo from 'react-native-vector-icons/Entypo';
-import Feather from 'react-native-vector-icons/Feather';
-import Ionicon from 'react-native-vector-icons/Ionicons';
-import Octicons from 'react-native-vector-icons/Octicons';
-import Fontisto from 'react-native-vector-icons/Fontisto';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import {responsiveFontSize} from 'react-native-responsive-dimensions';
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-import FontAwesome5ProIcon from 'react-native-vector-icons/FontAwesome5Pro';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const defaultProps: IconProps = {
   name: '',
-  type: 'MaterMaterialCommunityIcons',
   size: 2.5,
+  activeOpacity: 0.6,
+  disabledColor: 'rgb(220,220,220)',
+  type: 'MaterMaterialCommunityIcons',
 };
 
 const Icon: React.FC<IconProps> = ({
-  onPress,
   type,
   name,
   size,
   color,
+  style,
+  disabled,
+  buttonStyle,
+  wrapperStyle,
+  activeOpacity,
+  disabledColor,
+  onPress,
+  onPressIn,
+  onPressOut,
+  onLongPress,
   ...rest
 }) => {
   const {colors} = useTheme();
 
-  const IconComponent = React.useMemo(() => {
-    switch (type) {
-      case 'Entypo':
-        return Entypo;
-      case 'AntDesign':
-        return AntDesign;
-      case 'Feather':
-        return Feather;
-      case 'MaterialIcons':
-        return MaterialIcon;
-      case 'Fontisto':
-        return Fontisto;
-      case 'Ionicons':
-        return Ionicon;
-      case 'SimpleLineIcons':
-        return SimpleLineIcons;
-      case 'FontAwesome':
-        return FontAwesomeIcon;
-      case 'Octicons':
-        return Octicons;
-      case 'FontAwesome5':
-        return FontAwesome5Icon;
-      case 'FontAwesome5Pro':
-        return FontAwesome5ProIcon;
-      case 'Zocial':
-        return Zocial;
-      default:
-        return MaterialCommunityIcons;
-    }
-  }, [type]);
+  const iconColor = disabled ? disabledColor : color || colors?.text;
 
-  return onPress ? (
-    <Wrapper {...rest}>
-      <TouchableOpacity onPress={onPress} activeOpacity={0.6}>
+  const isButton = onPress || onPressIn || onPressOut || onLongPress;
+
+  const IconComponent = iconSelector(type);
+
+  const IconWrapperComponent = isButton ? TouchableOpacity : React.Fragment;
+
+  return (
+    <Wrapper style={wrapperStyle} testID="FAST_BASE_ICON_WRAPPER" {...rest}>
+      <IconWrapperComponent
+        {...(isButton && {
+          disabled,
+          onPress,
+          onPressIn,
+          onPressOut,
+          onLongPress,
+          activeOpacity,
+          style: buttonStyle,
+          accessibilityRole: 'button',
+          testID: 'FAST_BASE_ICON_BUTTON',
+        })}>
         <IconComponent
           name={name}
+          style={style}
+          color={iconColor}
+          testID="FAST_BASE_ICON"
           size={responsiveFontSize(size)}
-          color={color || colors?.secondText}
         />
-      </TouchableOpacity>
-    </Wrapper>
-  ) : (
-    <Wrapper {...rest}>
-      <IconComponent
-        name={name}
-        size={responsiveFontSize(size)}
-        color={color || colors?.secondText}
-      />
+      </IconWrapperComponent>
     </Wrapper>
   );
 };
