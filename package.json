@@ -60,9 +60,11 @@
     "@evilmartians/lefthook": "^1.2.2",
     "@react-native-community/eslint-config": "^3.0.2",
     "@release-it/conventional-changelog": "^5.0.0",
+    "@testing-library/react-native": "^12.0.0",
     "@types/jest": "^28.1.2",
     "@types/react": "~17.0.21",
     "@types/react-native": "0.70.0",
+    "@types/react-native-vector-icons": "^6.4.13",
     "commitlint": "^17.0.2",
     "del-cli": "^5.0.0",
     "eslint": "^8.4.1",
@@ -82,7 +84,8 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-vector-icons": ">7.0.0"
   },
   "engines": {
     "node": ">= 16.0.0"
@@ -155,5 +158,9 @@
       "module",
       "typescript"
     ]
+  },
+  "dependencies": {
+    "react-native-full-responsive": "^1.0.3",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5"
   }
 }
