@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text component should match snapshot 1`] = `
+<Text
+  style={
+    Object {
+      "color": "#FFFFFF",
+      "fontSize": 29.166666666666668,
+    }
+  }
+  testID="FAST_BASE_TEXT"
+>
+  It's fast base text!
+</Text>
+`;

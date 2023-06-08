@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Wrapper component should match snapshot 1`] = `
+<View
+  style={Object {}}
+  testID="FAST_BASE_WRAPPER"
+>
+  <Text />
+</View>
+`;
+
+exports[`Wrapper component should render the spaces properties correctly 1`] = `
+<View
+  style={
+    Object {
+      "paddingBottom": 6.5,
+      "paddingEnd": 7.5,
+      "paddingHorizontal": 7.5,
+      "paddingStart": 4,
+      "paddingTop": 13.5,
+      "paddingVertical": 13.5,
+    }
+  }
+  testID="FAST_BASE_WRAPPER"
+/>
+`;

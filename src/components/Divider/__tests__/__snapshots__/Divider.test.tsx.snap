@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Divider component should match snapshot 1`] = `
+<View
+  style={
+    Object {
+      "borderBottomWidth": 2.0833333333333335,
+    }
+  }
+  testID="FAST_BASE_DIVIDER"
+/>
+`;

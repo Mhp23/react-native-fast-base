@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Container component should render correctly 1`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "backgroundColor": "#171717",
+      "flex": 1,
+    }
+  }
+  testID="FAST_BASE_CONTAINER"
+>
+  <Text>
+    Hello Fast Base Container!
+  </Text>
+</RCTSafeAreaView>
+`;
