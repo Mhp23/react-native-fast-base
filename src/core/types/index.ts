@@ -1,11 +1,24 @@
+import {ReactNode} from 'react';
 import type {
   ViewStyle,
   StyleProp,
   ViewProps,
+  TextStyle,
   FlexAlignType,
+  PressableProps,
+  ActivityIndicatorProps,
   TextProps as NativeTextProps,
 } from 'react-native';
+import {Animated} from 'react-native';
 
+export enum DefaultSizes {
+  xs = 2,
+  sm = 4,
+  md = 8,
+  lg = 12,
+  xl = 24,
+}
+export type SOmit<S extends string | number> = S | Omit<string, S>;
 export type PropsWithChildren<P = unknown> = P & {
   children?: React.ReactNode | undefined;
 };
@@ -13,6 +26,14 @@ export type MappedType = {
   [key: string]: any;
 };
 export type ThemeModeType = 'light' | 'dark';
+export type SizeType = keyof typeof DefaultSizes;
+export type PrimaryColorType =
+  | 'primary'
+  | 'secondary'
+  | 'disabled'
+  | 'success'
+  | 'warning'
+  | 'error';
 export type TextAlignType = 'auto' | 'left' | 'right' | 'center' | 'justify';
 export type FlexAlignYType =
   | 'flex-start'
@@ -54,15 +75,15 @@ export interface ColorsProps {
   900: string;
   950: string;
 }
-export interface DefaultThemeColorsProps {
+export type DefaultThemeColorsProps = {
+  [key in PrimaryColorType]: string;
+} & {
   flat: string;
   text: string;
   surface: string;
-  primary: string;
-  secondary: string;
   secondText: string;
   background: string;
-}
+};
 export interface DefaultThemeContentProps {
   mode?: ThemeModeType;
 }
@@ -87,7 +108,7 @@ export type ThemeContextProps<T extends MappedType = {}> =
 
 export type ThemeProviderProps<T extends MappedType = {}> =
   DefaultThemeContentProps & {
-    theme: ThemeProps<T>;
+    theme?: ThemeProps<T>;
     /**
      * status bar color
      * @android only
@@ -178,4 +199,64 @@ export interface DividerProps
   color?: string;
 
   style?: StyleProp<ViewStyle>;
+}
+
+export interface ButtonProps extends PressableProps {
+  children: string | ReactNode;
+  /**
+   * button style mode could one of this modes.
+   */
+  mode: 'solid' | 'outline' | 'transparent';
+  /**
+   * button size could be one of the size type
+   */
+  size: SizeType;
+  /**
+   * enabling activity indicator
+   */
+  loading: boolean;
+
+  loadingColor: string;
+  /**
+   * all availible properties in ActivityIndicator component
+   */
+  loadingProps: ActivityIndicatorProps;
+
+  disabled: boolean;
+
+  title: string;
+
+  color: SOmit<PrimaryColorType>;
+
+  wrapperStyle: StyleProp<ViewStyle>;
+
+  wrapperProps: WrapperProps;
+
+  buttonStyle: StyleProp<ViewStyle>;
+
+  titleStyle: StyleProp<TextStyle>;
+
+  titleColor: string;
+
+  titleProps: TextProps;
+
+  radius: SizeType | number;
+
+  shadow: 'low' | 'medium' | 'high';
+
+  disabledColor: string;
+
+  disabledWrapperStyle: StyleProp<ViewStyle>;
+
+  disabledTitleStyle: StyleProp<ViewStyle>;
+
+  borderColor: string;
+
+  pressable: boolean;
+
+  pressableConfig: UseAnimationConfig;
+}
+export interface UseAnimationConfig {
+  pressIn?: Animated.TimingAnimationConfig;
+  pressOut?: Animated.TimingAnimationConfig;
 }
