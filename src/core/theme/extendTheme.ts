@@ -1,8 +1,8 @@
-import type {ThemeProps} from '../types';
+import type {MappedType, ThemeProps} from '../types';
 import DefaulFastBaseTheme from '../default/theme';
 import deepmerge from 'deepmerge';
 
-const createTheme = <T extends object = {}>(
+const extendTheme = <T extends MappedType = {}>(
   customTheme: ThemeProps<T> = {},
 ): ThemeProps<T> => {
   return deepmerge<ThemeProps<T>>(
@@ -11,4 +11,4 @@ const createTheme = <T extends object = {}>(
   );
 };
 
-export default createTheme;
+export default extendTheme;

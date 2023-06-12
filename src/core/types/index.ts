@@ -1,4 +1,5 @@
 import {ReactNode} from 'react';
+import Colors from '../default/colors';
 import type {
   ViewStyle,
   StyleProp,
@@ -6,6 +7,7 @@ import type {
   TextStyle,
   FlexAlignType,
   PressableProps,
+  ColorSchemeName,
   ActivityIndicatorProps,
   TextProps as NativeTextProps,
 } from 'react-native';
@@ -25,7 +27,6 @@ export type PropsWithChildren<P = unknown> = P & {
 export type MappedType = {
   [key: string]: any;
 };
-export type ThemeModeType = 'light' | 'dark';
 export type SizeType = keyof typeof DefaultSizes;
 export type PrimaryColorType =
   | 'primary'
@@ -85,7 +86,8 @@ export type DefaultThemeColorsProps = {
   background: string;
 };
 export interface DefaultThemeContentProps {
-  mode?: ThemeModeType;
+  mode?: ColorSchemeName;
+  defaultColors?: typeof Colors;
 }
 export type ThemeColorsProps<T extends MappedType = {}> =
   DefaultThemeColorsProps & {
@@ -98,29 +100,25 @@ export type ThemeContentProps<T extends MappedType = {}> =
     [P in keyof T]: T[P];
   };
 export interface ThemeProps<T extends MappedType = {}> {
+  mode?: ColorSchemeName;
   DarkTheme?: ThemeContentProps<T>;
   DefaultTheme?: ThemeContentProps<T>;
 }
 export type ThemeContextProps<T extends MappedType = {}> =
   ThemeContentProps<T> & {
-    changeTheme: (mode: ThemeModeType) => Promise<void>;
+    changeMode: (
+      mode: ColorSchemeName,
+      /**
+       * you are able to execute your callback function after the theme mode is changed, such as
+       * changing the Android navigation bar color, status bar color, etc.
+       */
+      changeModeCallback?: (newMode: ColorSchemeName) => void | Promise<void>,
+    ) => void;
   };
 
 export type ThemeProviderProps<T extends MappedType = {}> =
   DefaultThemeContentProps & {
     theme?: ThemeProps<T>;
-    /**
-     * status bar color
-     * @android only
-     * @default {colors.background}
-     */
-    barBackground?: string;
-    /**
-     * change the phone's bottom navigation bar color depending on the current theme
-     * @android only
-     * @default false
-     */
-    useNavigationBarColor?: boolean;
     /**
      * at default, if your phone's dark mode was enabled, the theme will change to dark mode.
      * You are able to set this property as false to avoid enabling system mode and the theme

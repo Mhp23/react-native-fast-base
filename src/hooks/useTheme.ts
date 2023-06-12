@@ -1,8 +1,8 @@
 import React from 'react';
-import {ThemeContext} from '../core';
+import {MappedType, ThemeContext, ThemeContextProps} from '../core';
 
-const useTheme = () => {
-  const theme = React.useContext(ThemeContext);
+const useTheme = <T extends MappedType = {}>() => {
+  const theme = React.useContext<ThemeContextProps<T>>(ThemeContext as any);
   return theme;
 };
 
