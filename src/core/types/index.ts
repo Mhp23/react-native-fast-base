@@ -76,15 +76,17 @@ export interface ColorsProps {
   900: string;
   950: string;
 }
-export type DefaultThemeColorsProps = {
-  [key in PrimaryColorType]: string;
-} & {
-  flat: string;
-  text: string;
-  surface: string;
-  secondText: string;
-  background: string;
-};
+export type DefaultThemeColorsProps = Partial<
+  {
+    [key in PrimaryColorType]: string;
+  } & {
+    flat: string;
+    text: string;
+    surface: string;
+    secondText: string;
+    background: string;
+  }
+>;
 export interface DefaultThemeContentProps {
   mode?: ColorSchemeName;
   defaultColors?: typeof Colors;
@@ -100,7 +102,6 @@ export type ThemeContentProps<T extends MappedType = {}> =
     [P in keyof T]: T[P];
   };
 export interface ThemeProps<T extends MappedType = {}> {
-  mode?: ColorSchemeName;
   DarkTheme?: ThemeContentProps<T>;
   DefaultTheme?: ThemeContentProps<T>;
 }
@@ -116,17 +117,19 @@ export type ThemeContextProps<T extends MappedType = {}> =
     ) => void;
   };
 
-export type ThemeProviderProps<T extends MappedType = {}> =
-  DefaultThemeContentProps & {
-    theme?: ThemeProps<T>;
-    /**
-     * at default, if your phone's dark mode was enabled, the theme will change to dark mode.
-     * You are able to set this property as false to avoid enabling system mode and the theme
-     * will be handled manually.
-     * @default true
-     */
-    enableSystemMode?: boolean;
-  };
+export type ThemeProviderProps<T extends MappedType = {}> = Pick<
+  DefaultThemeContentProps,
+  'mode'
+> & {
+  theme?: ThemeProps<T>;
+  /**
+   * at default, if your phone's dark mode was enabled, the theme will change to dark mode.
+   * You are able to set this property as false to avoid enabling system mode and the theme
+   * will be handled manually.
+   * @default true
+   */
+  enableSystemMode?: boolean;
+};
 
 export interface SpaceXYProps extends ViewProps, PropsWithChildren {
   spaceX?: number;

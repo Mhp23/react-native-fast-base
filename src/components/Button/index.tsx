@@ -74,7 +74,7 @@ const Button = React.forwardRef<View, Partial<ButtonProps>>(
       const backgroundColor =
         mode === 'solid'
           ? disabled
-            ? colors.disabled
+            ? colors?.disabled
             : colors?.[color as keyof DefaultThemeColorsProps] ||
               (color as string)
           : 'transparent';

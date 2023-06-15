@@ -7,36 +7,47 @@ import type {
 } from '../types';
 import Colors from '../default/colors';
 import extendTheme from './extendTheme';
-import {Appearance, ColorSchemeName} from 'react-native';
+import {
+  Appearance,
+  ColorSchemeName,
+  NativeEventSubscription,
+} from 'react-native';
 
 export const ThemeContext = React.createContext<ThemeContextProps>(
   {} as ThemeContextProps,
 );
 
+const defaultProps: ThemeProviderProps = {
+  theme: extendTheme(),
+  enableSystemMode: true,
+};
+
 const FastBaseProvider: React.FC<PropsWithChildren<ThemeProviderProps>> = ({
+  mode,
+  theme,
   children,
   enableSystemMode,
-  theme = extendTheme(),
 }) => {
-  const mounted = React.useRef<boolean>(false);
   /**
    * processing the current theme of the app that depends on the passed mode and system mode.
    */
   const getCurrentTheme = React.useCallback(
-    (newMode: ColorSchemeName = theme?.mode) => {
+    (newMode: ColorSchemeName = mode, skipAppearanceCheck = false) => {
       let currentMode = newMode;
 
-      const colorScheme = Appearance.getColorScheme();
+      if (!skipAppearanceCheck) {
+        const colorScheme = Appearance.getColorScheme();
 
-      if (!currentMode && enableSystemMode && !!colorScheme) {
-        currentMode = colorScheme;
+        if (!currentMode && enableSystemMode && !!colorScheme) {
+          currentMode = colorScheme;
+        }
       }
       return {
         ...(currentMode === 'dark' ? theme.DarkTheme : theme.DefaultTheme),
         mode: currentMode,
       };
     },
-    [enableSystemMode, theme],
+    [enableSystemMode, mode, theme],
   );
 
   const [currentTheme, setCurrentTheme] =
@@ -47,8 +58,7 @@ const FastBaseProvider: React.FC<PropsWithChildren<ThemeProviderProps>> = ({
       newMode: ColorSchemeName,
       changeModeCallback?: (newMode: ColorSchemeName) => void | Promise<void>,
     ) {
-      const newTheme = getCurrentTheme(newMode);
-      setCurrentTheme(newTheme);
+      setCurrentTheme(getCurrentTheme(newMode, true));
       /**
        * executing changeModeCallback function if was passed
        */
@@ -65,9 +75,9 @@ const FastBaseProvider: React.FC<PropsWithChildren<ThemeProviderProps>> = ({
 
   const onColorSchemeChange = React.useCallback(
     ({colorScheme}: {colorScheme: ColorSchemeName}) => {
-      changeMode(colorScheme);
+      setCurrentTheme(getCurrentTheme(colorScheme, true));
     },
-    [changeMode],
+    [getCurrentTheme],
   );
 
   const themeContextValue: ThemeContextProps = React.useMemo(() => {
@@ -79,29 +89,30 @@ const FastBaseProvider: React.FC<PropsWithChildren<ThemeProviderProps>> = ({
   }, [currentTheme, changeMode]);
 
   React.useEffect(() => {
-    if (mounted.current) {
-      setCurrentTheme(getCurrentTheme(theme.mode));
-    }
-  }, [theme.mode, getCurrentTheme]);
+    setCurrentTheme(getCurrentTheme(mode));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mode, theme]);
 
   React.useEffect(() => {
-    mounted.current = true;
-
-    const appearance = Appearance.addChangeListener(onColorSchemeChange);
-
+    let unSubscribe: NativeEventSubscription;
+    if (!mode && enableSystemMode) {
+      unSubscribe = Appearance.addChangeListener(onColorSchemeChange);
+    }
     return () => {
-      /**
-       * handling Appearance listener removing cleanup for different react native versions.
-       */
-      if ('removeChangeListener' in Appearance) {
-        (Appearance as any).removeChangeListener(onColorSchemeChange);
-      } else if (appearance) {
-        appearance.remove();
+      if (!mode && enableSystemMode) {
+        /**
+         * handling Appearance listener removing cleanup for different react native versions.
+         */
+        if (unSubscribe) {
+          unSubscribe.remove();
+        } else {
+          //@ts-expect-error removeChangeListener in Appearance only availible old versions of RN
+          Appearance.removeChangeListener(onColorSchemeChange);
+        }
       }
-      mounted.current = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [enableSystemMode, mode]);
 
   return (
     <ThemeContext.Provider value={themeContextValue}>
@@ -109,5 +120,7 @@ const FastBaseProvider: React.FC<PropsWithChildren<ThemeProviderProps>> = ({
     </ThemeContext.Provider>
   );
 };
+
+FastBaseProvider.defaultProps = defaultProps;
 
 export default FastBaseProvider;

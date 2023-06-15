@@ -14,7 +14,6 @@ import {
 } from './colors';
 
 const DefaultTheme: ThemeProps = {
-  mode: 'light',
   DefaultTheme: {
     colors: {
       text: Black,

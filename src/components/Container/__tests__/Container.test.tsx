@@ -21,7 +21,7 @@ describe('Container component', () => {
     expect(rendered).toMatchSnapshot();
     expect(containerComponent.props.style).toMatchObject({
       flex: 1,
-      backgroundColor: DefaultTheme.DefaultTheme.colors.background,
+      backgroundColor: DefaultTheme.DefaultTheme.colors?.background,
     });
   });
 });
