@@ -1,9 +1,14 @@
 import React from 'react';
 import {useStyle, useTheme} from '../../hooks';
 import type {ContainerProps} from '../../core';
-import {SafeAreaView, StyleSheet, type ViewStyle} from 'react-native';
+import {
+  StyleSheet,
+  type ViewStyle,
+  SafeAreaView as RNSafeAreaView,
+} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
-const Container = React.forwardRef<SafeAreaView, ContainerProps>(
+const Container = React.forwardRef<RNSafeAreaView, ContainerProps>(
   ({children, background, style, ...rest}, ref) => {
     const {colors} = useTheme();
 

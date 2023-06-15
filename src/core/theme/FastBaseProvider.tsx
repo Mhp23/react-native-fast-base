@@ -12,6 +12,7 @@ import {
   ColorSchemeName,
   NativeEventSubscription,
 } from 'react-native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 export const ThemeContext = React.createContext<ThemeContextProps>(
   {} as ThemeContextProps,
@@ -116,7 +117,7 @@ const FastBaseProvider: React.FC<PropsWithChildren<ThemeProviderProps>> = ({
 
   return (
     <ThemeContext.Provider value={themeContextValue}>
-      {children}
+      <SafeAreaProvider>{children}</SafeAreaProvider>
     </ThemeContext.Provider>
   );
 };
