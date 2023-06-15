@@ -4,7 +4,7 @@ exports[`Container component should render correctly 1`] = `
 <RCTSafeAreaView
   style={
     Object {
-      "backgroundColor": "#171717",
+      "backgroundColor": "#f9fafb",
       "flex": 1,
     }
   }

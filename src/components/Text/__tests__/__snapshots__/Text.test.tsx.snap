@@ -4,7 +4,7 @@ exports[`Text component should match snapshot 1`] = `
 <Text
   style={
     Object {
-      "color": "#FFFFFF",
+      "color": "#000000",
       "fontSize": 29.166666666666668,
     }
   }
