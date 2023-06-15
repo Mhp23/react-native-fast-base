@@ -3,7 +3,7 @@ import {Container, FastBaseProvider} from 'react-native-fast-base';
 
 export default function App() {
   return (
-    <FastBaseProvider>
+    <FastBaseProvider mode="dark">
       <Container>
         <></>
       </Container>
