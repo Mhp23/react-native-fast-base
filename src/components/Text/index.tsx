@@ -1,5 +1,5 @@
 import React from 'react';
-import {makeStyle} from '../../utils';
+import {colorSelector, makeStyle} from '../../utils';
 import type {TextProps} from '../../core';
 import {useStyle, useTheme} from '../../hooks';
 import {useRS} from 'react-native-full-responsive';
@@ -28,13 +28,14 @@ const Text = React.forwardRef(
     const fontSize = useRS(size);
 
     const textStyles = useStyle<TextStyle>(() => {
+      const textColor = colorSelector(color) || colors?.text;
       return makeStyle({
         fontSize,
+        color: textColor,
         fontFamily: font,
         textAlign: alignX,
-        color: color || colors?.text,
       });
-    }, [alignX, color, colors?.text, font, fontSize]);
+    }, [alignX, color, font, colors?.text, fontSize]);
 
     return (
       <NativeText

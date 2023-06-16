@@ -42,22 +42,38 @@ describe('Wrapper component', () => {
   it('should render the spaces properties correctly', () => {
     const rendered = render(
       <Wrapper
-        spaceX={1}
-        spaceY={1}
-        spaceEnd={1}
-        spaceTop={1}
-        spaceStart={0.5}
-        spaceBottom={0.5}
+        p={1}
+        px={1}
+        py={1}
+        pe={1}
+        pt={1}
+        ps={1}
+        pb={1}
+        m={1}
+        mx={1}
+        my={1}
+        me={1}
+        mt={1}
+        ms={1}
+        mb={1}
       />,
     ).toJSON();
 
     const keys = [
+      'padding',
       'paddingHorizontal',
       'paddingVertical',
       'paddingEnd',
       'paddingStart',
       'paddingTop',
       'paddingBottom',
+      'margin',
+      'marginHorizontal',
+      'marginVertical',
+      'marginEnd',
+      'marginStart',
+      'marginTop',
+      'marginBottom',
     ];
     expect(rendered).toBeTruthy();
     expect(rendered).toMatchSnapshot();

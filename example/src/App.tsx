@@ -1,11 +1,17 @@
 import * as React from 'react';
-import {Container, FastBaseProvider, Text} from 'react-native-fast-base';
+import {
+  Divider,
+  Wrapper,
+  Container,
+  FastBaseProvider,
+} from 'react-native-fast-base';
 
 export default function App() {
   return (
     <FastBaseProvider mode="dark">
       <Container>
-        <Text>Hello World!</Text>
+        <Wrapper background="blue-100" p={10} />
+        <Divider color="green-100" width={10} />
       </Container>
     </FastBaseProvider>
   );

@@ -13,12 +13,20 @@ exports[`Wrapper component should render the spaces properties correctly 1`] = `
 <View
   style={
     Object {
-      "paddingBottom": 6.5,
-      "paddingEnd": 7.5,
-      "paddingHorizontal": 7.5,
-      "paddingStart": 4,
-      "paddingTop": 13.5,
-      "paddingVertical": 13.5,
+      "margin": 2.0833333333333335,
+      "marginBottom": 2.0833333333333335,
+      "marginEnd": 2.0833333333333335,
+      "marginHorizontal": 2.0833333333333335,
+      "marginStart": 2.0833333333333335,
+      "marginTop": 2.0833333333333335,
+      "marginVertical": 2.0833333333333335,
+      "padding": 2.0833333333333335,
+      "paddingBottom": 2.0833333333333335,
+      "paddingEnd": 2.0833333333333335,
+      "paddingHorizontal": 2.0833333333333335,
+      "paddingStart": 2.0833333333333335,
+      "paddingTop": 2.0833333333333335,
+      "paddingVertical": 2.0833333333333335,
     }
   }
   testID="FAST_BASE_WRAPPER"

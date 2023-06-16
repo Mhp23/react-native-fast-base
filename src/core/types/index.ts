@@ -21,6 +21,8 @@ export enum DefaultSizes {
   xl = 24,
 }
 export type SOmit<S extends string | number> = S | Omit<string, S>;
+export type AllColorsType =
+  SOmit<`${keyof typeof Colors}-${keyof ColorsProps}`>;
 export type PropsWithChildren<P = unknown> = P & {
   children?: React.ReactNode | undefined;
 };
@@ -132,17 +134,80 @@ export type ThemeProviderProps<T extends MappedType = {}> = Pick<
 };
 
 export interface SpaceXYProps extends ViewProps, PropsWithChildren {
-  spaceX?: number;
-  spaceY?: number;
-  spaceTop?: number;
-  spaceEnd?: number;
-  spaceStart?: number;
-  spaceBottom?: number;
+  /**
+   * p is equal to padding style
+   */
+  p?: number;
+  /**
+   * px is equal to paddingHorizontal style
+   */
+  px?: number;
+  /**
+   * py is equal to paddingVertical style
+   */
+  py?: number;
+  /**
+   * pt is equal to paddingTop style
+   */
+  pt?: number;
+  /**
+   * pe is equal to paddingEnd style
+   */
+  pe?: number;
+  /**
+   * ps is equal to paddingStart style
+   */
+  ps?: number;
+  /**
+   * pb is equal to paddingBottom style
+   */
+  pb?: number;
+  /**
+   * m is equal to margin style
+   */
+  m?: number;
+  /**
+   * mx is equal to marginHorizontal style
+   */
+  mx?: number;
+  /**
+   * my is equal to marginVertical style
+   */
+  my?: number;
+  /**
+   * mt is equal to marginTom style
+   */
+  mt?: number;
+  /**
+   * me is equal to marginEnd style
+   */
+  me?: number;
+  /**
+   * ms is equal to marginStart style
+   */
+  ms?: number;
+  /**
+   * mb is equal to marginBottom style
+   */
+  mb?: number;
 }
 export interface WrapperProps extends SpaceXYProps {
+  /**
+   * the responsive width size using passed width percentage.
+   * more info: https://github.com/Mhp23/react-native-full-responsive
+   */
+  width?: number;
+  /**
+   * the responsive height size using passed height percentage.
+   * more info: https://github.com/Mhp23/react-native-full-responsive
+   */
+  height?: number;
+
   alignX?: FlexAlignType;
+
   alignY?: FlexAlignYType;
-  alignSelf?: 'auto' | FlexAlignType;
+
+  self?: 'auto' | FlexAlignType;
   /**
    * this is a property to specify component flex direction
    */
@@ -153,6 +218,8 @@ export interface WrapperProps extends SpaceXYProps {
    * considered for the flex value.
    */
   flex?: number | boolean;
+
+  background?: AllColorsType;
 }
 export type ContainerProps = PropsWithChildren<
   ViewProps & Partial<Pick<DefaultThemeColorsProps, 'background'>>
@@ -168,15 +235,14 @@ export interface TextProps<T extends string = ''> extends NativeTextProps {
    * text color of the component, you are able to set a custom text color for
    * the text (as default the text color provided in the theme will consider)
    */
-  color?: string;
+  color?: AllColorsType;
   /**
    * font of family of the component, you capable of to use your type as generic
    * in the text component.
    */
   font?: T;
 }
-export interface DividerProps
-  extends Pick<SpaceXYProps, 'spaceY' | 'spaceX' | 'spaceTop' | 'spaceBottom'> {
+export interface DividerProps extends ViewProps {
   /**
    * the direction of dividing two elements
    * @default vertical
@@ -197,7 +263,7 @@ export interface DividerProps
    * the Divider component (as default flat color provided in the theme will consider),
    * only works when the mode is `border`
    */
-  color?: string;
+  color?: AllColorsType;
 
   style?: StyleProp<ViewStyle>;
 }

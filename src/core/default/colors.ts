@@ -1,10 +1,6 @@
 import type {ColorsProps} from '../types';
 
-export const Black = '#000000';
-
-export const White = '#FFFFFF';
-
-export const Slate: ColorsProps = {
+export const slate: ColorsProps = {
   50: '#f8fafc',
   100: '#f1f5f9',
   200: '#e2e8f0',
@@ -17,7 +13,7 @@ export const Slate: ColorsProps = {
   900: '#0f172a',
   950: '#020617',
 };
-export const Gray: ColorsProps = {
+export const gray: ColorsProps = {
   50: '#f9fafb',
   100: '#f3f4f6',
   200: '#e5e7eb',
@@ -30,7 +26,7 @@ export const Gray: ColorsProps = {
   900: '#111827',
   950: '#030712',
 };
-export const Zinc: ColorsProps = {
+export const zinc: ColorsProps = {
   50: '#fafafa',
   100: '#f4f4f5',
   200: '#e4e4e7',
@@ -43,7 +39,7 @@ export const Zinc: ColorsProps = {
   900: '#18181b',
   950: '#09090b',
 };
-export const Neutral: ColorsProps = {
+export const neutral: ColorsProps = {
   50: '#fafafa',
   100: '#f5f5f5',
   200: '#e5e5e5',
@@ -56,7 +52,7 @@ export const Neutral: ColorsProps = {
   900: '#171717',
   950: '#0a0a0a',
 };
-export const Stone: ColorsProps = {
+export const stone: ColorsProps = {
   50: '#fafaf9',
   100: '#f5f5f4',
   200: '#e7e5e4',
@@ -69,7 +65,7 @@ export const Stone: ColorsProps = {
   900: '#1c1917',
   950: '#0c0a09',
 };
-export const Red: ColorsProps = {
+export const red: ColorsProps = {
   50: '#fef2f2',
   100: '#fee2e2',
   200: '#fecaca',
@@ -82,7 +78,7 @@ export const Red: ColorsProps = {
   900: '#7f1d1d',
   950: '#450a0a',
 };
-export const Orange: ColorsProps = {
+export const orange: ColorsProps = {
   50: '#fff7ed',
   100: '#ffedd5',
   200: '#fed7aa',
@@ -95,7 +91,7 @@ export const Orange: ColorsProps = {
   900: '#7c2d12',
   950: '#431407',
 };
-export const Amber: ColorsProps = {
+export const amber: ColorsProps = {
   50: '#fffbeb',
   100: '#fef3c7',
   200: '#fde68a',
@@ -108,7 +104,7 @@ export const Amber: ColorsProps = {
   900: '#78350f',
   950: '#451a03',
 };
-export const Yellow: ColorsProps = {
+export const yellow: ColorsProps = {
   50: '#fefce8',
   100: '#fef9c3',
   200: '#fef08a',
@@ -121,7 +117,7 @@ export const Yellow: ColorsProps = {
   900: '#713f12',
   950: '#422006',
 };
-export const Lime: ColorsProps = {
+export const lime: ColorsProps = {
   50: '#f7fee7',
   100: '#ecfccb',
   200: '#d9f99d',
@@ -134,7 +130,7 @@ export const Lime: ColorsProps = {
   900: '#365314',
   950: '#1a2e05',
 };
-export const Green: ColorsProps = {
+export const green: ColorsProps = {
   50: '#f0fdf4',
   100: '#dcfce7',
   200: '#bbf7d0',
@@ -147,7 +143,7 @@ export const Green: ColorsProps = {
   900: '#14532d',
   950: '#052e16',
 };
-export const Emerald: ColorsProps = {
+export const emerald: ColorsProps = {
   50: '#ecfdf5',
   100: '#d1fae5',
   200: '#a7f3d0',
@@ -160,7 +156,7 @@ export const Emerald: ColorsProps = {
   900: '#064e3b',
   950: '#022c22',
 };
-export const Teal: ColorsProps = {
+export const teal: ColorsProps = {
   50: '#f0fdfa',
   100: '#ccfbf1',
   200: '#99f6e4',
@@ -173,7 +169,7 @@ export const Teal: ColorsProps = {
   900: '#134e4a',
   950: '#042f2e',
 };
-export const Cyan: ColorsProps = {
+export const cyan: ColorsProps = {
   50: '#ecfeff',
   100: '#cffafe',
   200: '#a5f3fc',
@@ -186,7 +182,7 @@ export const Cyan: ColorsProps = {
   900: '#164e63',
   950: '#083344',
 };
-export const Sky: ColorsProps = {
+export const sky: ColorsProps = {
   50: '#f0f9ff',
   100: '#e0f2fe',
   200: '#bae6fd',
@@ -199,10 +195,10 @@ export const Sky: ColorsProps = {
   900: '#0c4a6e',
   950: '#082f49',
 };
-export const Blue: ColorsProps = {
+export const blue: ColorsProps = {
   50: '#eff6ff',
-  100: '#e0f2fe',
-  200: '#e2e8f0',
+  100: '#dbeafe',
+  200: '#bfdbfe',
   300: '#93c5fd',
   400: '#60a5fa',
   500: '#3b82f6',
@@ -212,7 +208,7 @@ export const Blue: ColorsProps = {
   900: '#1e3a8a',
   950: '#172554',
 };
-export const Indigo: ColorsProps = {
+export const indigo: ColorsProps = {
   50: '#eef2ff',
   100: '#e0e7ff',
   200: '#c7d2fe',
@@ -225,7 +221,7 @@ export const Indigo: ColorsProps = {
   900: '#312e81',
   950: '#1e1b4b',
 };
-export const Violet: ColorsProps = {
+export const violet: ColorsProps = {
   50: '#f5f3ff',
   100: '#f3e8ff',
   200: '#e9d5ff',
@@ -238,7 +234,7 @@ export const Violet: ColorsProps = {
   900: '#581c87',
   950: '#3b0764',
 };
-export const Purple: ColorsProps = {
+export const purple: ColorsProps = {
   50: '#faf5ff',
   100: '#f3e8ff',
   200: '#e9d5ff',
@@ -251,7 +247,7 @@ export const Purple: ColorsProps = {
   900: '#581c87',
   950: '#3b0764',
 };
-export const Fuchsia: ColorsProps = {
+export const fuchsia: ColorsProps = {
   50: '#fdf4ff',
   100: '#fae8ff',
   200: '#f5d0fe',
@@ -264,7 +260,7 @@ export const Fuchsia: ColorsProps = {
   900: '#701a75',
   950: '#4a044e',
 };
-export const Pink: ColorsProps = {
+export const pink: ColorsProps = {
   50: '#fdf2f8',
   100: '#fce7f3',
   200: '#fbcfe8',
@@ -277,7 +273,7 @@ export const Pink: ColorsProps = {
   900: '#831843',
   950: '#500724',
 };
-export const Rose: ColorsProps = {
+export const rose: ColorsProps = {
   50: '#fff1f2',
   100: '#ffe4e6',
   200: '#fecdd3',
@@ -292,30 +288,28 @@ export const Rose: ColorsProps = {
 };
 
 const Colors = {
-  Black,
-  White,
-  Slate,
-  Gray,
-  Zinc,
-  Neutral,
-  Stone,
-  Red,
-  Orange,
-  Amber,
-  Yellow,
-  Lime,
-  Green,
-  Emerald,
-  Teal,
-  Cyan,
-  Sky,
-  Blue,
-  Indigo,
-  Violet,
-  Purple,
-  Fuchsia,
-  Pink,
-  Rose,
+  slate,
+  gray,
+  zinc,
+  neutral,
+  stone,
+  red,
+  orange,
+  amber,
+  yellow,
+  lime,
+  green,
+  emerald,
+  teal,
+  cyan,
+  sky,
+  blue,
+  indigo,
+  violet,
+  purple,
+  fuchsia,
+  pink,
+  rose,
 };
 
 export default Colors;
