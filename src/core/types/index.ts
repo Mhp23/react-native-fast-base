@@ -222,7 +222,7 @@ export interface WrapperProps extends SpaceXYProps {
   background?: AllColorsType;
 }
 export type ContainerProps = PropsWithChildren<
-  ViewProps & Partial<Pick<DefaultThemeColorsProps, 'background'>>
+  ViewProps & Pick<WrapperProps, 'background'> & SpaceXYProps
 >;
 export interface TextProps<T extends string = ''> extends NativeTextProps {
   alignX?: TextAlignType;
