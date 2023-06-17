@@ -1,13 +1,12 @@
 import React from 'react';
-import {colorSelector, makeStyle} from '../../utils';
-import {useStyle, useTheme} from '../../hooks';
+import {colorSelector} from '../../utils';
+import {useSpaceStyle, useStyle, useTheme} from '../../hooks';
 import type {ContainerProps} from '../../core';
 import {
   StyleSheet,
   type ViewStyle,
   SafeAreaView as RNSafeAreaView,
 } from 'react-native';
-import {useRM} from 'react-native-full-responsive';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 const defaultProps: ContainerProps = {
@@ -16,6 +15,8 @@ const defaultProps: ContainerProps = {
   py: 0,
   pt: 0,
   pb: 0,
+  pr: 0,
+  pl: 0,
   pe: 0,
   ps: 0,
   m: 0,
@@ -23,6 +24,8 @@ const defaultProps: ContainerProps = {
   my: 0,
   mt: 0,
   mb: 0,
+  ml: 0,
+  mr: 0,
   me: 0,
   ms: 0,
 };
@@ -35,6 +38,8 @@ const Container = React.forwardRef<RNSafeAreaView, ContainerProps>(
       py,
       pt,
       pb,
+      pr,
+      pl,
       pe,
       ps,
       m,
@@ -42,6 +47,8 @@ const Container = React.forwardRef<RNSafeAreaView, ContainerProps>(
       my,
       mt,
       mb,
+      mr,
+      ml,
       me,
       ms,
       style,
@@ -53,37 +60,37 @@ const Container = React.forwardRef<RNSafeAreaView, ContainerProps>(
   ) => {
     const {colors} = useTheme();
 
-    const {rs} = useRM();
+    const spaceStyle = useSpaceStyle({
+      p,
+      px,
+      py,
+      pt,
+      pb,
+      pr,
+      pl,
+      pe,
+      ps,
+      m,
+      mx,
+      my,
+      mt,
+      mb,
+      mr,
+      ml,
+      me,
+      ms,
+    });
 
     const containerStyles = useStyle<ViewStyle>(() => {
       const backgroundColor = colorSelector(background) || colors?.background;
       return {flex: 1, backgroundColor};
     }, [background, colors?.background]);
 
-    const spacesStyles = useStyle<ViewStyle>(() => {
-      return makeStyle<ViewStyle>({
-        padding: rs(p),
-        paddingEnd: rs(pe),
-        paddingTop: rs(pt),
-        paddingStart: rs(ps),
-        paddingBottom: rs(pb),
-        paddingVertical: rs(py),
-        paddingHorizontal: rs(px),
-        margin: rs(m),
-        marginEnd: rs(me),
-        marginTop: rs(mt),
-        marginStart: rs(ms),
-        marginBottom: rs(mb),
-        marginVertical: rs(my),
-        marginHorizontal: rs(mx),
-      });
-    }, [rs, p, pe, pt, ps, pb, py, px, m, me, mt, ms, mb, my, mx]);
-
     return (
       <SafeAreaView
         ref={ref}
         testID="FAST_BASE_CONTAINER"
-        style={StyleSheet.flatten([containerStyles, spacesStyles, style])}
+        style={StyleSheet.flatten([containerStyles, spaceStyle, style])}
         {...rest}>
         {children}
       </SafeAreaView>

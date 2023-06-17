@@ -1,5 +1,5 @@
 import React from 'react';
-import {useTheme} from '../hooks';
+import useTheme from '../hooks/useTheme';
 import type {MappedType, ThemeContentProps} from '../core';
 
 const withTheme = <P extends object, T extends MappedType = {}>(

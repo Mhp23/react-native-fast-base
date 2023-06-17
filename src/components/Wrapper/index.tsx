@@ -1,5 +1,5 @@
 import React from 'react';
-import {useStyle} from '../../hooks';
+import {useSpaceStyle, useStyle} from '../../hooks';
 import type {WrapperProps} from '../../core';
 import {useRM} from 'react-native-full-responsive';
 import {colorSelector, makeStyle} from '../../utils';
@@ -13,6 +13,8 @@ const defaultProps: WrapperProps = {
   py: 0,
   pt: 0,
   pb: 0,
+  pr: 0,
+  pl: 0,
   pe: 0,
   ps: 0,
   m: 0,
@@ -20,6 +22,8 @@ const defaultProps: WrapperProps = {
   my: 0,
   mt: 0,
   mb: 0,
+  mr: 0,
+  ml: 0,
   me: 0,
   ms: 0,
 };
@@ -32,6 +36,8 @@ const Wrapper = React.forwardRef<View, WrapperProps>(
       py,
       pt,
       pb,
+      pr,
+      pl,
       pe,
       ps,
       m,
@@ -39,6 +45,8 @@ const Wrapper = React.forwardRef<View, WrapperProps>(
       my,
       mt,
       mb,
+      mr,
+      ml,
       me,
       ms,
       self,
@@ -55,7 +63,28 @@ const Wrapper = React.forwardRef<View, WrapperProps>(
     },
     ref,
   ) => {
-    const {rs, rh, rw} = useRM();
+    const {rh, rw} = useRM();
+
+    const spaceStyle = useSpaceStyle({
+      p,
+      px,
+      py,
+      pt,
+      pb,
+      pr,
+      pl,
+      pe,
+      ps,
+      m,
+      mx,
+      my,
+      mt,
+      mb,
+      mr,
+      ml,
+      me,
+      ms,
+    });
 
     const backgroundStyle = useStyle(() => {
       const bgColor = colorSelector(background);
@@ -78,32 +107,13 @@ const Wrapper = React.forwardRef<View, WrapperProps>(
       });
     }, [rw, rh, self, alignX, alignY, width, height, flex, mode]);
 
-    const spacesStyles = useStyle<ViewStyle>(() => {
-      return makeStyle<ViewStyle>({
-        padding: rs(p),
-        paddingEnd: rs(pe),
-        paddingTop: rs(pt),
-        paddingStart: rs(ps),
-        paddingBottom: rs(pb),
-        paddingVertical: rs(py),
-        paddingHorizontal: rs(px),
-        margin: rs(m),
-        marginEnd: rs(me),
-        marginTop: rs(mt),
-        marginStart: rs(ms),
-        marginBottom: rs(mb),
-        marginVertical: rs(my),
-        marginHorizontal: rs(mx),
-      });
-    }, [rs, p, pe, pt, ps, pb, py, px, m, me, mt, ms, mb, my, mx]);
-
     return (
       <View
         ref={ref}
         style={StyleSheet.flatten([
           backgroundStyle,
           wrapperStyles,
-          spacesStyles,
+          spaceStyle,
           style,
         ])}
         testID="FAST_BASE_WRAPPER"

@@ -151,6 +151,18 @@ export interface SpaceXYProps extends ViewProps, PropsWithChildren {
    */
   pt?: number;
   /**
+   * pb is equal to paddingBottom style
+   */
+  pb?: number;
+  /**
+   * pr is equal to paddingRight style
+   */
+  pr?: number;
+  /**
+   * pl is equal to paddingLeft style
+   */
+  pl?: number;
+  /**
    * pe is equal to paddingEnd style
    */
   pe?: number;
@@ -158,10 +170,6 @@ export interface SpaceXYProps extends ViewProps, PropsWithChildren {
    * ps is equal to paddingStart style
    */
   ps?: number;
-  /**
-   * pb is equal to paddingBottom style
-   */
-  pb?: number;
   /**
    * m is equal to margin style
    */
@@ -178,6 +186,19 @@ export interface SpaceXYProps extends ViewProps, PropsWithChildren {
    * mt is equal to marginTom style
    */
   mt?: number;
+
+  /**
+   * mb is equal to marginBottom style
+   */
+  mb?: number;
+  /**
+   * mr is equal to marginRight style
+   */
+  mr?: number;
+  /**
+   * ml is equal to marginLeft style
+   */
+  ml?: number;
   /**
    * me is equal to marginEnd style
    */
@@ -186,10 +207,6 @@ export interface SpaceXYProps extends ViewProps, PropsWithChildren {
    * ms is equal to marginStart style
    */
   ms?: number;
-  /**
-   * mb is equal to marginBottom style
-   */
-  mb?: number;
 }
 export interface WrapperProps extends SpaceXYProps {
   /**
