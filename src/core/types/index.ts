@@ -14,11 +14,18 @@ import type {
 import {Animated} from 'react-native';
 
 export enum DefaultSizes {
-  xs = 2,
-  sm = 4,
-  md = 8,
-  lg = 12,
-  xl = 24,
+  xs = 8,
+  sm = 10,
+  md = 12,
+  lg = 14,
+  xl = 18,
+}
+export enum DefaultTextSizes {
+  xs = 12,
+  sm = 14,
+  md = 16,
+  lg = 18,
+  xl = 20,
 }
 export type SOmit<S extends string | number> = S | Omit<string, S>;
 export type AllColorsType =
@@ -33,7 +40,6 @@ export type SizeType = keyof typeof DefaultSizes;
 export type PrimaryColorType =
   | 'primary'
   | 'secondary'
-  | 'disabled'
   | 'success'
   | 'warning'
   | 'error';
@@ -85,6 +91,7 @@ export type DefaultThemeColorsProps = Partial<
     flat: string;
     text: string;
     surface: string;
+    disabled: string;
     secondText: string;
     background: string;
   }
@@ -287,6 +294,8 @@ export interface DividerProps extends ViewProps {
 
 export interface ButtonProps extends PressableProps {
   children: string | ReactNode;
+
+  type: PrimaryColorType;
   /**
    * button style mode could one of this modes.
    */
@@ -300,47 +309,56 @@ export interface ButtonProps extends PressableProps {
    */
   loading: boolean;
 
-  loadingColor: string;
+  loadingColor: AllColorsType;
   /**
    * all availible properties in ActivityIndicator component
    */
   loadingProps: ActivityIndicatorProps;
 
-  disabled: boolean;
-
   title: string;
-
-  color: SOmit<PrimaryColorType>;
-
-  wrapperStyle: StyleProp<ViewStyle>;
-
-  wrapperProps: WrapperProps;
+  /**
+   * button color
+   */
+  color: AllColorsType;
 
   buttonStyle: StyleProp<ViewStyle>;
 
   titleStyle: StyleProp<TextStyle>;
 
-  titleColor: string;
+  titleColor: AllColorsType;
 
   titleProps: TextProps;
 
   radius: SizeType | number;
+  /**
+   * only works on solid mode
+   */
+  shadow: 'low' | 'medium' | 'high' | boolean;
 
-  shadow: 'low' | 'medium' | 'high';
+  disabledButtonColor: AllColorsType;
 
-  disabledColor: string;
+  disabledTitleColor: AllColorsType;
 
-  disabledWrapperStyle: StyleProp<ViewStyle>;
+  disabledTitleStyle: StyleProp<TextStyle>;
 
-  disabledTitleStyle: StyleProp<ViewStyle>;
-
-  borderColor: string;
+  borderColor: AllColorsType;
 
   pressable: boolean;
-
+  /**
+   * in order to use custom pressable config includes pressIn
+   * and pressOut config
+   */
   pressableConfig: UseAnimationConfig;
+  /**
+   * @default 0.5
+   */
+  opacity: number | boolean;
+  /**
+   * in order to use custom opacity config includes pressIn config
+   */
+  opacityConfig: Pick<UseAnimationConfig, 'pressIn'>;
 }
 export interface UseAnimationConfig {
-  pressIn?: Animated.TimingAnimationConfig;
-  pressOut?: Animated.TimingAnimationConfig;
+  pressIn?: Partial<Animated.TimingAnimationConfig>;
+  pressOut?: Partial<Animated.TimingAnimationConfig>;
 }

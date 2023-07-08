@@ -1,4 +1,4 @@
-import type {ColorsProps} from '../types';
+import type {ColorsProps, PrimaryColorType} from '../types';
 
 export const slate: ColorsProps = {
   50: '#f8fafc',
@@ -285,6 +285,16 @@ export const rose: ColorsProps = {
   800: '#9f1239',
   900: '#881337',
   950: '#4c0519',
+};
+
+export const PrimaryColors: {
+  [key in PrimaryColorType]: string;
+} = {
+  error: red[500],
+  primary: blue[500],
+  success: green[500],
+  warning: orange[500],
+  secondary: pink[500],
 };
 
 const Colors = {
