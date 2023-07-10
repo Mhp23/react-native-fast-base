@@ -5,6 +5,7 @@ import type {
   StyleProp,
   ViewProps,
   TextStyle,
+  ImageProps,
   FlexAlignType,
   PressableProps,
   ColorSchemeName,
@@ -27,7 +28,16 @@ export enum DefaultTextSizes {
   lg = 18,
   xl = 20,
 }
-export type SOmit<S extends string | number> = S | Omit<string, S>;
+export enum ImageSizes {
+  xs = 10,
+  sm = 12,
+  md = 16,
+  lg = 20,
+  xl = 26,
+  '2xl' = 30,
+}
+export type SOmit<S extends string> = S | Omit<string, S>;
+export type SNOmit<S extends string | number> = S | Omit<string | number, S>;
 export type AllColorsType =
   SOmit<`${keyof typeof Colors}-${keyof ColorsProps}`>;
 export type PropsWithChildren<P = unknown> = P & {
@@ -36,6 +46,14 @@ export type PropsWithChildren<P = unknown> = P & {
 export type MappedType = {
   [key: string]: any;
 };
+export type AspectRatioType =
+  | '16/9'
+  | '4/3'
+  | '1/1'
+  | '2/3'
+  | '9/16'
+  | '3/2'
+  | '5/3';
 export type SizeType = keyof typeof DefaultSizes;
 export type PrimaryColorType =
   | 'primary'
@@ -361,4 +379,69 @@ export interface ButtonProps extends PressableProps {
 export interface UseAnimationConfig {
   pressIn?: Partial<Animated.TimingAnimationConfig>;
   pressOut?: Partial<Animated.TimingAnimationConfig>;
+}
+export interface FastBaseImageProps extends ImageProps {
+  /**
+   * image width, with using width and height, the size property will useless
+   */
+  w?: number;
+  /**
+   * image height, with using width and height, the size property will useless
+   */
+  h?: number;
+  /**
+   * should to use only one of the size property or width and height properties
+   * @default md
+   */
+  size?: keyof typeof ImageSizes;
+
+  radius?: keyof typeof ImageSizes | 'full' | number;
+  /**
+   * disable default react naitve image caching, it works will you use to specify image URI
+   */
+  noCache?: boolean;
+  /**
+   * image aspect ratio, could be string or number like:
+   * "1/1"
+   *  1/1
+   *  1
+   *  16/9
+   */
+  aspectRatio?: SNOmit<AspectRatioType>;
+  /**
+   * showing skeleton loading when image is loading
+   * @default false
+   */
+  skeletonLoading?: boolean;
+
+  loadingColor?: AllColorsType;
+}
+
+type EndResult = {finished: boolean};
+type EndCallback = (result: EndResult) => void;
+export interface CompositeAnimation {
+  /**
+   * Animations are started by calling start() on your animation.
+   * start() takes a completion callback that will be called when the
+   * animation is done or when the animation is done because stop() was
+   * called on it before it could finish.
+   *
+   * @param callback - Optional function that will be called
+   *      after the animation finished running normally or when the animation
+   *      is done because stop() was called on it before it could finish
+   *
+   * @example
+   *   Animated.timing({}).start(({ finished }) => {
+   *    // completion callback
+   *   });
+   */
+  start: (callback?: EndCallback) => void;
+  /**
+   * Stops any running animation.
+   */
+  stop: () => void;
+  /**
+   * Stops any running animation and resets the value to its original.
+   */
+  reset: () => void;
 }
