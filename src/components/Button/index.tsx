@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  View,
   Animated,
   Platform,
   ViewStyle,
@@ -30,18 +29,15 @@ import {
 const DEFAULT_OPACITY_VALUE = PRESS_IN_CONFIG.toValue;
 
 const defaultProps: Partial<ButtonProps> = {
-  size: 'md',
   radius: 'xs',
   mode: 'solid',
-  type: 'primary',
 };
 
-const Button = React.forwardRef<View, Partial<ButtonProps>>(
+const Button = React.forwardRef<any, Partial<ButtonProps>>(
   (
     {
-      type,
       mode,
-      size,
+      style,
       title,
       color,
       radius,
@@ -55,7 +51,6 @@ const Button = React.forwardRef<View, Partial<ButtonProps>>(
       titleColor,
       titleStyle,
       borderColor,
-      buttonStyle,
       loadingProps,
       loadingColor,
       opacityConfig,
@@ -63,6 +58,8 @@ const Button = React.forwardRef<View, Partial<ButtonProps>>(
       disabledTitleStyle,
       disabledTitleColor,
       disabledButtonColor,
+      size = typeof children === 'string' || !!title ? 'md' : undefined,
+      type = typeof children === 'string' || !!title ? 'primary' : undefined,
       onPress,
       onPressIn,
       onLongPress,
@@ -133,10 +130,16 @@ const Button = React.forwardRef<View, Partial<ButtonProps>>(
             : styles.highShadow,
         );
       }
+      if (size in DefaultSizes) {
+        Object.assign(appliedStyles, {
+          paddingVertical: rs(DefaultSizes[size]),
+          paddingHorizontal: rs(DefaultSizes[size]) * 1.5,
+        });
+      }
       return {
         ...appliedStyles,
-        paddingVertical: rs(DefaultSizes[size]),
-        paddingHorizontal: rs(DefaultSizes[size]) * 1.5,
+        overflow: 'hidden',
+        alignItems: 'center',
         borderRadius: rs(
           typeof radius === 'number' ? radius : DefaultSizes[radius] / 2,
         ),
@@ -228,7 +231,7 @@ const Button = React.forwardRef<View, Partial<ButtonProps>>(
           onPressIn={onButtonPressIn}
           onLongPress={onLongButtonPress}
           accessibilityState={accessibilityState}
-          style={StyleSheet.flatten([memorizedButtonStyle, buttonStyle])}
+          style={StyleSheet.flatten([memorizedButtonStyle, style])}
           {...rest}>
           {loading ? (
             <ActivityIndicator

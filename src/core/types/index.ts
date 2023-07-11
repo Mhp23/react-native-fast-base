@@ -312,14 +312,18 @@ export interface DividerProps extends ViewProps {
 
 export interface ButtonProps extends PressableProps {
   children: string | ReactNode;
-
+  /**
+   * button type, if the child of the button is text or that has the title,
+   * the default type will be "primary"
+   */
   type: PrimaryColorType;
   /**
    * button style mode could one of this modes.
    */
   mode: 'solid' | 'outline' | 'transparent';
   /**
-   * button size could be one of the size type
+   * button size, if the child of the button is text or that has the title,
+   * the default type will be "md"
    */
   size: SizeType;
   /**
@@ -338,8 +342,6 @@ export interface ButtonProps extends PressableProps {
    * button color
    */
   color: AllColorsType;
-
-  buttonStyle: StyleProp<ViewStyle>;
 
   titleStyle: StyleProp<TextStyle>;
 
