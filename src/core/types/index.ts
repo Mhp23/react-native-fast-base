@@ -43,6 +43,7 @@ export type AllColorsType =
 export type PropsWithChildren<P = unknown> = P & {
   children?: React.ReactNode | undefined;
 };
+export type RenderNodeType = React.ReactNode | (() => React.ReactNode);
 export type MappedType = {
   [key: string]: any;
 };
@@ -446,4 +447,42 @@ export interface CompositeAnimation {
    * Stops any running animation and resets the value to its original.
    */
   reset: () => void;
+}
+export interface ProgressProps {
+  /**
+   * using native driver or JS bridge
+   * @default true
+   */
+  useNativeDriver?: boolean;
+  /**
+   * to fill progress bar right to left
+   */
+  isRTL?: boolean;
+  /**
+   * width of progress bar
+   */
+  w: number;
+  /**
+   * height of progress bar
+   * @default md
+   */
+  h?: SizeType | number;
+  /**
+   * the progress value, should be between 0 to 100
+   */
+  value: number;
+  /**
+   * progress bar container background color
+   * @default flat
+   */
+  background?: AllColorsType;
+  /**
+   * progress bar color
+   * @default primary
+   */
+  progressColor?: AllColorsType;
+  /**
+   * progress bar container style
+   */
+  style?: StyleProp<ViewStyle>;
 }
