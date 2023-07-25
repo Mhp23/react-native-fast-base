@@ -624,13 +624,13 @@ export interface UnderlineInputProps extends InputProps {
    */
   animatable?: boolean;
   /**
-   * border scale animation duration when input focused, only works when the animatable
+   * the border scale animation duration when input focused, only works when the animatable
    * property is enabled
    * @default 250ms
    */
   focusDuration?: number;
   /**
-   * border scale animation duration when input blurred, only works when the animatable
+   * the border scale animation duration when input blurred, only works when the animatable
    * property is enabled
    * @default 200ms
    */
@@ -642,4 +642,16 @@ export interface OutlineInputProps extends InputProps {
    * @default xs
    */
   radius?: SizeType | 'full' | number;
+}
+export interface GapProps {
+  /**
+   * the direction of applying space gap, "H" means horizontal, and "V" means vertical
+   * @default V
+   */
+  mode?: 'H' | 'V';
+  /**
+   * the space value between each items
+   * @default xs
+   */
+  space?: keyof typeof DefaultSizes | number;
 }
