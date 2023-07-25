@@ -29,6 +29,15 @@ export enum DefaultTextSizes {
   md = 16,
   lg = 18,
   xl = 20,
+  '2xl' = 24,
+  '3xl' = 28,
+  '4xl' = 32,
+  '5xl' = 36,
+  '6xl' = 40,
+  '7xl' = 44,
+  '8xl' = 48,
+  '9xl' = 52,
+  '10xl' = 60,
 }
 export enum ImageSizes {
   xs = 10,
@@ -280,10 +289,10 @@ export type ContainerProps = PropsWithChildren<
 export interface TextProps<T extends string = ''> extends NativeTextProps {
   alignX?: TextAlignType;
   /**
-   * font size of the component
-   * @default 14
+   * font size of the component th
+   * @default md
    */
-  size?: number;
+  size?: keyof typeof DefaultTextSizes | number;
   /**
    * text color of the component, you are able to set a custom text color for
    * the text (as default the text color provided in the theme will consider)
@@ -294,6 +303,26 @@ export interface TextProps<T extends string = ''> extends NativeTextProps {
    * in the text component.
    */
   font?: T;
+  /**
+   * line height of the component
+   */
+  height?: number;
+  /**
+   * font weight of the component
+   */
+  weight?:
+    | 'normal'
+    | 'bold'
+    | '100'
+    | '200'
+    | '300'
+    | '400'
+    | '500'
+    | '600'
+    | '700'
+    | '800'
+    | '900'
+    | undefined;
 }
 export interface DividerProps extends ViewProps {
   /**

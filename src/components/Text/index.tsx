@@ -1,12 +1,12 @@
 import React from 'react';
-import {colorSelector, makeStyle} from '../../utils';
-import type {TextProps} from '../../core';
 import {useStyle, useTheme} from '../../hooks';
-import {useRS} from 'react-native-full-responsive';
+import {useRM} from 'react-native-full-responsive';
+import {colorSelector, makeStyle} from '../../utils';
+import {DefaultTextSizes, type TextProps} from '../../core';
 import {StyleSheet, Text as NativeText, type TextStyle} from 'react-native';
 
 const defaultProps: TextProps = {
-  size: 14,
+  size: 'md',
 };
 /**
  * in typescript, the Text component allows you to use the custom fonts
@@ -20,22 +20,37 @@ const defaultProps: TextProps = {
  */
 const Text = React.forwardRef(
   <T extends string = ''>(
-    {size, color, style, font, alignX, children, ...rest}: TextProps<T>,
+    {
+      font,
+      size,
+      color,
+      style,
+      alignX,
+      weight,
+      height,
+      children,
+      ...rest
+    }: TextProps<T>,
     ref?: React.Ref<NativeText>,
   ) => {
     const {colors} = useTheme();
 
-    const fontSize = useRS(size);
+    const {rs} = useRM();
 
     const textStyles = useStyle<TextStyle>(() => {
       const textColor = colorSelector(color) || colors?.text;
+      const fontSize = rs(
+        typeof size === 'number' ? size : DefaultTextSizes[size],
+      );
       return makeStyle({
         fontSize,
         color: textColor,
         fontFamily: font,
         textAlign: alignX,
+        fontWeight: weight,
+        lineHeight: height,
       });
-    }, [alignX, color, font, colors?.text, fontSize]);
+    }, [color, colors?.text, rs, size, font, alignX, weight, height]);
 
     return (
       <NativeText
