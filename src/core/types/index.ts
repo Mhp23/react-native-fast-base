@@ -11,6 +11,8 @@ import type {
   ColorSchemeName,
   ActivityIndicatorProps,
   TextProps as NativeTextProps,
+  TextInput,
+  TextInputProps,
 } from 'react-native';
 import {Animated} from 'react-native';
 
@@ -35,6 +37,13 @@ export enum ImageSizes {
   lg = 20,
   xl = 26,
   '2xl' = 30,
+}
+export enum InputSpaceSizes {
+  xs = 11,
+  sm = 12,
+  md = 13,
+  lg = 14,
+  xl = 15,
 }
 export type SOmit<S extends string> = S | Omit<string, S>;
 export type SNOmit<S extends string | number> = S | Omit<string | number, S>;
@@ -109,6 +118,7 @@ export type DefaultThemeColorsProps = Partial<
   } & {
     flat: string;
     text: string;
+    border: string;
     surface: string;
     disabled: string;
     secondText: string;
@@ -485,4 +495,122 @@ export interface ProgressProps {
    * progress bar container style
    */
   style?: StyleProp<ViewStyle>;
+}
+export interface InputRef
+  extends Pick<
+    TextInput,
+    'clear' | 'blur' | 'focus' | 'isFocused' | 'setNativeProps'
+  > {
+  /**
+   * to shake text input (eg when invalid data in input is submitted)
+   * @param duration
+   */
+  shake: (duration?: number) => void;
+  /**
+   * to bounce text input (eg when invalid data in input is submitted)
+   * @param duration
+   */
+  bounce: (duration?: number) => void;
+}
+
+export interface InputProps extends TextInputProps {
+  /**
+   * to disable text input compeletly and change style to disable mode
+   */
+  disabled?: boolean;
+  /**
+   * with enable readonly property, text input no longer editable and just readable
+   */
+  readonly?: boolean;
+  /**
+   * with enable invalid property, text input style will change to error mode
+   */
+  invalid?: boolean;
+  /**
+   * to specify that the text input content is password
+   */
+  passowrd?: boolean;
+  /**
+   * the text input size
+   * @default md
+   */
+  size?: keyof typeof InputSpaceSizes;
+  /**
+   * text input background, only works when the mode property is "fill"
+   */
+  background?: AllColorsType;
+  /**
+   * to specify that the animations use native driver or not
+   * @default true
+   */
+  useNativeDriver?: boolean;
+
+  inputStyle?: StyleProp<TextStyle>;
+
+  label?: string | RenderNodeType;
+
+  labelStyle?: StyleProp<TextStyle>;
+  /**
+   * only works when the invalid property is enabled
+   */
+  invalidLabel?: string | RenderNodeType;
+
+  invalidLabelStyle?: StyleProp<TextStyle>;
+
+  hintLabel?: string | RenderNodeType;
+
+  hintLabelStyle?: StyleProp<TextStyle>;
+
+  leftElement?: RenderNodeType;
+
+  rightElement?: RenderNodeType;
+  /**
+   * it's only works when the component has been left element
+   */
+  leftParentProps?: WrapperProps;
+  /**
+   * it's only works when the component has been right element
+   */
+  rightParentProps?: WrapperProps;
+  /**
+   * only works when the invalid property is enabled and the text input is unfocused
+   */
+  invalidStyle?: StyleProp<ViewStyle>;
+
+  borderWidth?: number;
+
+  unFocusedBorderColor?: AllColorsType;
+
+  focusedBorderColor?: AllColorsType;
+  /**
+   * parent container of the text input, recommend using for custom styles like padding or margin
+   */
+  containerStyle?: StyleProp<ViewStyle>;
+}
+
+export interface UnderlineInputProps extends InputProps {
+  /**
+   * in order to show/hide the border as animatedly when focused and on blurred
+   * @default true
+   */
+  animatable?: boolean;
+  /**
+   * border scale animation duration when input focused, only works when the animatable
+   * property is enabled
+   * @default 250ms
+   */
+  focusDuration?: number;
+  /**
+   * border scale animation duration when input blurred, only works when the animatable
+   * property is enabled
+   * @default 200ms
+   */
+  blurDuration?: number;
+}
+export interface OutlineInputProps extends InputProps {
+  /**
+   * border radius around of the text input
+   * @default xs
+   */
+  radius?: SizeType | 'full' | number;
 }
