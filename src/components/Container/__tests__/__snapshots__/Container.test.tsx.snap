@@ -12,7 +12,7 @@ exports[`Container component should render correctly 1`] = `
   }
   style={
     Object {
-      "backgroundColor": "#f9fafb",
+      "backgroundColor": "#F7F9F9",
       "flex": 1,
     }
   }
