@@ -116,9 +116,11 @@ const FastBaseProvider: React.FC<PropsWithChildren<ThemeProviderProps>> = ({
   }, [enableSystemMode, mode]);
 
   return (
-    <ThemeContext.Provider value={themeContextValue}>
-      <SafeAreaProvider>{children}</SafeAreaProvider>
-    </ThemeContext.Provider>
+    <SafeAreaProvider>
+      <ThemeContext.Provider value={themeContextValue}>
+        {children}
+      </ThemeContext.Provider>
+    </SafeAreaProvider>
   );
 };
 
