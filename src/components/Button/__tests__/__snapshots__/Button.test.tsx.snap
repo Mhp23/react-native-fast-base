@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button component should render correcly 1`] = `
+<View
+  accessibilityRole="button"
+  accessibilityState={
+    Object {
+      "busy": false,
+      "checked": undefined,
+      "disabled": false,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    Object {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#3b82f6",
+      "borderRadius": 8.333333333333334,
+      "overflow": "hidden",
+      "paddingHorizontal": 30,
+      "paddingVertical": 20,
+    }
+  }
+  testID="FAST_BASE_BUTTON"
+>
+  <Text
+    style={
+      Object {
+        "color": "#ffffff",
+        "fontSize": 33.333333333333336,
+      }
+    }
+    testID="FAST_BASE_BUTTON_TITLE"
+  >
+    Press Me!
+  </Text>
+</View>
+`;

@@ -11,13 +11,8 @@ import {
 } from 'react-native';
 import Text from '../Text';
 import {colorSelector} from '../../utils';
-import {
-  ButtonProps,
-  DefaultSizes,
-  PrimaryColors,
-  DefaultTextSizes,
-} from '../../core';
 import {useRM} from 'react-native-full-responsive';
+import {ButtonProps, DefaultSizes, PrimaryColors} from '../../core';
 import {
   PRESS_IN_CONFIG,
   useAnimation,
@@ -28,19 +23,12 @@ import {
 
 const DEFAULT_OPACITY_VALUE = PRESS_IN_CONFIG.toValue;
 
-const defaultProps: Partial<ButtonProps> = {
-  radius: 'xs',
-  mode: 'solid',
-};
-
 const Button = React.forwardRef<any, Partial<ButtonProps>>(
   (
     {
-      mode,
       style,
       title,
       color,
-      radius,
       shadow,
       opacity,
       loading,
@@ -54,6 +42,8 @@ const Button = React.forwardRef<any, Partial<ButtonProps>>(
       loadingProps,
       loadingColor,
       opacityConfig,
+      radius = 'xs',
+      mode = 'solid',
       pressableConfig,
       disabledTitleStyle,
       disabledTitleColor,
@@ -121,20 +111,21 @@ const Button = React.forwardRef<any, Partial<ButtonProps>>(
         appliedStyles = {backgroundColor: 'transparent'};
       }
       if (mode === 'solid' && shadow && color !== 'transparent') {
-        Object.assign(
-          appliedStyles,
-          shadow === true || shadow === 'low'
+        appliedStyles = {
+          ...appliedStyles,
+          ...(shadow === true || shadow === 'low'
             ? styles.lowShadow
             : shadow === 'medium'
             ? styles.midShadow
-            : styles.highShadow,
-        );
+            : styles.highShadow),
+        };
       }
       if (size in DefaultSizes) {
-        Object.assign(appliedStyles, {
-          paddingVertical: rs(DefaultSizes[size]),
-          paddingHorizontal: rs(DefaultSizes[size]) * 1.5,
-        });
+        appliedStyles = {
+          ...appliedStyles,
+          paddingVertical: rs(DefaultSizes[size]) * 0.8,
+          paddingHorizontal: rs(DefaultSizes[size]) * 1.2,
+        };
       }
       return {
         ...appliedStyles,
@@ -161,7 +152,7 @@ const Button = React.forwardRef<any, Partial<ButtonProps>>(
     const memorizedTitleStyle = useStyle<TextStyle>(() => {
       return {
         color: textColor,
-        fontSize: rs(DefaultTextSizes[size]),
+        fontSize: rs(DefaultSizes[size] + 4),
       };
     }, [rs, size, textColor]);
 
@@ -259,8 +250,6 @@ const Button = React.forwardRef<any, Partial<ButtonProps>>(
     );
   },
 );
-
-Button.defaultProps = defaultProps;
 
 export default Button;
 
