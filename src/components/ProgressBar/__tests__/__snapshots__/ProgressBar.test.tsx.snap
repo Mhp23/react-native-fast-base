@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProgressBar component should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#ECF0F1",
+      "borderRadius": 50,
+      "height": 20.833333333333336,
+      "overflow": "hidden",
+      "width": 208.33333333333334,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    style={
+      Object {
+        "backgroundColor": "#3b82f6",
+        "height": "100%",
+        "transform": Array [
+          Object {
+            "translateX": -104.16666666666667,
+          },
+          Object {
+            "scaleX": 0,
+          },
+        ],
+        "width": "100%",
+      }
+    }
+    testID="FAST_BASE_PROGRESS_BAR"
+  />
+</View>
+`;

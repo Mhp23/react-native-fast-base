@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image component should render correctly 1`] = `
+<Image
+  accessibilityRole="image"
+  onError={[Function]}
+  onLoadEnd={[Function]}
+  onLoadStart={[Function]}
+  source={
+    Object {
+      "uri": "https://www.stockvault.net/data/2011/05/31/124348/thumb16.jpg",
+    }
+  }
+  style={
+    Object {
+      "height": 213.5,
+      "width": 213.5,
+    }
+  }
+  testID="FAST_BASE_IMAGE"
+/>
+`;

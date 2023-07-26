@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input components should render outline correctly 1`] = `
+<View
+  collapsable={false}
+  style={
+    Object {
+      "transform": Array [
+        Object {
+          "translateX": 0,
+        },
+        Object {
+          "translateY": 0,
+        },
+      ],
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": undefined,
+        "borderColor": "#DDDDDD",
+        "borderRadius": 8.333333333333334,
+        "borderWidth": 3.125,
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "marginTop": 16.666666666666668,
+        "overflow": "hidden",
+        "position": "relative",
+      }
+    }
+    testID="FAST_BASE_WRAPPER"
+  >
+    <TextInput
+      accessible={true}
+      editable={true}
+      onBlur={[Function]}
+      onFocus={[Function]}
+      placeholderTextColor="#626567"
+      secureTextEntry={false}
+      style={
+        Object {
+          "color": "#000000",
+          "flex": 1,
+          "fontSize": 27.083333333333336,
+          "paddingBottom": 21.666666666666668,
+          "paddingEnd": 27.083333333333336,
+          "paddingStart": 27.083333333333336,
+          "paddingTop": 21.666666666666668,
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`Input components should render underline correctly 1`] = `
+<View
+  collapsable={false}
+  style={
+    Object {
+      "transform": Array [
+        Object {
+          "translateX": 0,
+        },
+        Object {
+          "translateY": 0,
+        },
+      ],
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": undefined,
+        "borderBottomColor": "#DDDDDD",
+        "borderBottomWidth": 3.125,
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "marginTop": 16.666666666666668,
+        "position": "relative",
+      }
+    }
+    testID="FAST_BASE_WRAPPER"
+  >
+    <TextInput
+      accessible={true}
+      editable={true}
+      onBlur={[Function]}
+      onFocus={[Function]}
+      placeholderTextColor="#626567"
+      secureTextEntry={false}
+      style={
+        Object {
+          "color": "#000000",
+          "flex": 1,
+          "fontSize": 27.083333333333336,
+          "paddingBottom": 21.666666666666668,
+          "paddingTop": 21.666666666666668,
+        }
+      }
+    />
+    <View
+      collapsable={false}
+      style={
+        Object {
+          "backgroundColor": "#3b82f6",
+          "bottom": -3.125,
+          "height": 3.125,
+          "position": "absolute",
+          "transform": Array [
+            Object {
+              "scaleX": 0,
+            },
+          ],
+          "width": "100%",
+        }
+      }
+    />
+  </View>
+</View>
+`;

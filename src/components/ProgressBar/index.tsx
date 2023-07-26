@@ -78,6 +78,7 @@ const Progress: React.FC<ProgressProps> = ({
   return (
     <View style={containerStyle}>
       <Animated.View
+        testID="FAST_BASE_PROGRESS_BAR"
         style={[
           progressBarStyle,
           {

@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gap component should render correctly 1`] = `
+Array [
+  <Text
+    style={
+      Object {
+        "color": "#000000",
+        "fontSize": 33.333333333333336,
+        "marginBottom": 25,
+      }
+    }
+    testID="FAST_BASE_TEXT"
+  >
+    Hello World
+  </Text>,
+  <Text
+    style={
+      Object {
+        "color": "#000000",
+        "fontSize": 37.5,
+        "marginBottom": 25,
+      }
+    }
+    testID="FAST_BASE_TEXT"
+  >
+    Hello World
+  </Text>,
+  <Text
+    style={
+      Object {
+        "color": "#000000",
+        "fontSize": 41.66666666666667,
+      }
+    }
+    testID="FAST_BASE_TEXT"
+  >
+    Hello World
+  </Text>,
+]
+`;
+
+exports[`Gap component should render the fragment parented components correctly 1`] = `
+Array [
+  <Text
+    style={
+      Object {
+        "color": "#000000",
+        "fontSize": 33.333333333333336,
+      }
+    }
+    testID="FAST_BASE_TEXT"
+  >
+    Hello World
+  </Text>,
+  <View
+    style={
+      Object {
+        "paddingVertical": 12.5,
+      }
+    }
+    testID="FAST_BASE_DIVIDER"
+  />,
+  <Text
+    style={
+      Object {
+        "color": "#000000",
+        "fontSize": 41.66666666666667,
+        "marginBottom": 25,
+      }
+    }
+    testID="FAST_BASE_TEXT"
+  >
+    Hello World
+  </Text>,
+  <Text
+    style={
+      Object {
+        "color": "#000000",
+        "fontSize": 37.5,
+      }
+    }
+    testID="FAST_BASE_TEXT"
+  >
+    Hello World
+  </Text>,
+]
+`;
