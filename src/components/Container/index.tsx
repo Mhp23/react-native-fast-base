@@ -1,13 +1,9 @@
 import React from 'react';
 import {colorSelector} from '../../utils';
-import {useSpaceStyle, useStyle, useTheme} from '../../hooks';
 import type {ContainerProps} from '../../core';
-import {
-  StyleSheet,
-  type ViewStyle,
-  SafeAreaView as RNSafeAreaView,
-} from 'react-native';
+import {StyleSheet, type ViewStyle} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useSpaceStyle, useStyle, useTheme} from '../../hooks';
 
 const defaultProps: ContainerProps = {
   p: 0,
@@ -30,7 +26,7 @@ const defaultProps: ContainerProps = {
   ms: 0,
 };
 
-const Container = React.forwardRef<RNSafeAreaView, ContainerProps>(
+const Container = React.forwardRef<any, ContainerProps>(
   (
     {
       p,

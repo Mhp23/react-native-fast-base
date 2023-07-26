@@ -15,6 +15,7 @@ import type {
   TextInputProps,
 } from 'react-native';
 import {Animated} from 'react-native';
+import {SafeAreaViewProps} from 'react-native-safe-area-context';
 
 export enum DefaultSizes {
   xs = 8,
@@ -284,7 +285,7 @@ export interface WrapperProps extends SpaceXYProps {
   background?: AllColorsType;
 }
 export type ContainerProps = PropsWithChildren<
-  ViewProps & Pick<WrapperProps, 'background'> & SpaceXYProps
+  SafeAreaViewProps & Pick<WrapperProps, 'background'> & SpaceXYProps
 >;
 export interface TextProps<T extends string = ''> extends NativeTextProps {
   alignX?: TextAlignType;
