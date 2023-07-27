@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
-import {Container, Image, ImageSizes} from 'react-native-fast-base';
+import {Container, Image, ImageSizes} from '@fast-base/native';
 
 const IMAGE = 'https://www.stockvault.net/data/2011/05/31/124348/thumb16.jpg';
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Text, Input, Button, InputRef, useTheme} from 'react-native-fast-base';
+import {Text, Input, Button, InputRef, useTheme} from '@fast-base/native';
 
 const inputStyle = {marginBottom: 15};
 

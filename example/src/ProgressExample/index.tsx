@@ -1,5 +1,5 @@
 import React from 'react';
-import {Wrapper, Container, ProgressBar} from 'react-native-fast-base';
+import {Wrapper, Container, ProgressBar} from '@fast-base/native';
 
 const ProgressExample: React.FC = () => {
   const countInterval = React.useRef(null);

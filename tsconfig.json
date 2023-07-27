@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "react-native-fast-base": ["./src/index"]
+      "@fast-base/native": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

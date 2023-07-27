@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
-import {DefaultTextSizes, Text, Gap} from 'react-native-fast-base';
+import {DefaultTextSizes, Text, Gap} from '@fast-base/native';
 
 const values = Object.values(DefaultTextSizes);
 

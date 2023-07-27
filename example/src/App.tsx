@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Container, FastBaseProvider} from 'react-native-fast-base';
+import {Container, FastBaseProvider} from '@fast-base/native';
 
 const theme = 'dark';
 

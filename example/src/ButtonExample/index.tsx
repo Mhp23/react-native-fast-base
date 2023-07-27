@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Wrapper, Container} from 'react-native-fast-base';
+import {Button, Wrapper, Container} from '@fast-base/native';
 
 const ButtonExample: React.FC = () => {
   return (
