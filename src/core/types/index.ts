@@ -655,4 +655,21 @@ export interface GapProps {
    * @default xs
    */
   space?: keyof typeof DefaultSizes | number;
+  /**
+   * to reverse children's items priority
+   * @default false
+   */
+  reversed?: boolean;
+  /**
+   *  the behavior could be style or element:
+   * - style: will add margin style to your element based on the current mode (Please consider style only add to element
+   * if the children elements could accept style, such as View, Text, Image, etc.)
+   * - divider: will add a divider between your children's elements based on the current mode
+   * @default divider
+   */
+  behavior?: 'style' | 'divider';
+  /**
+   * only works when the behavior is "divider"
+   */
+  dividerProps?: DividerProps;
 }

@@ -7,10 +7,24 @@ import {render, cleanup} from '@testing-library/react-native';
 afterEach(cleanup);
 
 describe('Gap component', () => {
-  it('should render correctly', () => {
+  it('should render correctly when behavior is the divider', () => {
     const rendered = render(
       <MockedProvider>
-        <Gap space="md">
+        <Gap behavior="divider" space="md">
+          <Text>Hello World</Text>
+          <Text size="lg">Hello World</Text>
+          <Text size="xl">Hello World</Text>
+        </Gap>
+      </MockedProvider>,
+    );
+    expect(rendered).toBeTruthy();
+    expect(rendered).toMatchSnapshot();
+  });
+
+  it('should render correctly when behavior is the style', () => {
+    const rendered = render(
+      <MockedProvider>
+        <Gap behavior="style" space="md">
           <Text>Hello World</Text>
           <Text size="lg">Hello World</Text>
           <Text size="xl">Hello World</Text>

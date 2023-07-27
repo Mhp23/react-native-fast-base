@@ -14,14 +14,9 @@ const TextGapExample: React.FC = () => {
       <Gap space="xs">
         {values.slice(0, values.length / 2).map((size: any, index) => {
           return (
-            <React.Fragment key={`${size}-${index}`}>
-              <Text
-                style={textStyle(index)}
-                key={`${size}-${index}`}
-                size={size}>
-                Hello World
-              </Text>
-            </React.Fragment>
+            <Text style={textStyle(index)} key={`${size}-${index}`} size={size}>
+              Hello World
+            </Text>
           );
         })}
       </Gap>
