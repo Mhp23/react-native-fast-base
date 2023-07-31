@@ -26,9 +26,9 @@ const ProgressExample: React.FC = () => {
 
   return (
     <Container p={10}>
-      <Wrapper flex alignY="center" alignX="center">
+      <Wrapper flex ay="center" ax="center">
         <ProgressBar
-          w={300}
+          width={300}
           value={count}
           useNativeDriver={false}
           progressColor="green-500"

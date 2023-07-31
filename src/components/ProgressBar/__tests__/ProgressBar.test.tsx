@@ -9,7 +9,7 @@ describe('ProgressBar component', () => {
   it('should render correctly', () => {
     const rendered = render(
       <MockedProvider>
-        <ProgressBar w={100} value={0} />
+        <ProgressBar width={100} value={0} />
       </MockedProvider>,
     );
     expect(rendered).toBeTruthy();

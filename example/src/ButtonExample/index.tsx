@@ -4,7 +4,7 @@ import {Button, Wrapper, Container} from '@fast-base/native';
 const ButtonExample: React.FC = () => {
   return (
     <Container>
-      <Wrapper flex alignY="space-evenly" alignX="center">
+      <Wrapper flex ay="space-evenly" ax="center">
         <Button title="Normal Button" />
         <Button
           pressable

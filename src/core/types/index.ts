@@ -171,7 +171,7 @@ export type ThemeProviderProps<T extends MappedType = {}> = Pick<
 > & {
   theme?: ThemeProps<T>;
   /**
-   * at default, if your phone's dark mode was enabled, the theme will change to dark mode.
+   * at default, if your phone's dark mode is enabled, the theme will change to dark mode.
    * You are able to set this property as false to avoid enabling system mode and the theme
    * will be handled manually.
    * @default true
@@ -266,9 +266,9 @@ export interface WrapperProps extends SpaceXYProps {
    */
   height?: number;
 
-  alignX?: FlexAlignType;
+  ax?: FlexAlignType;
 
-  alignY?: FlexAlignYType;
+  ay?: FlexAlignYType;
 
   self?: 'auto' | FlexAlignType;
   /**
@@ -276,9 +276,10 @@ export interface WrapperProps extends SpaceXYProps {
    */
   mode?: WrapperModePropType;
   /**
-   * you are able to set a boolean or number value for this property, if the value of the flex
-   * property is 'true', flex will consider '1', and if you passa number,a numeric value will be
-   * considered for the flex value.
+   * you are able to set a boolean or number value for this property,
+   * if the value of the flex property is 'true', flex will consider '1',
+   * and if you pass a number, a numeric value will be considered for
+   * the flex value.
    */
   flex?: number | boolean;
 
@@ -288,7 +289,7 @@ export type ContainerProps = PropsWithChildren<
   SafeAreaViewProps & Pick<WrapperProps, 'background'> & SpaceXYProps
 >;
 export interface TextProps<T extends string = ''> extends NativeTextProps {
-  alignX?: TextAlignType;
+  ax?: TextAlignType;
   /**
    * font size of the component th
    * @default md
@@ -300,8 +301,8 @@ export interface TextProps<T extends string = ''> extends NativeTextProps {
    */
   color?: AllColorsType;
   /**
-   * font of family of the component, you capable of to use your type as generic
-   * in the text component.
+   * to specify the component font family, you are capable of using your type
+   * as generic in the text component.
    */
   font?: T;
   /**
@@ -337,7 +338,7 @@ export interface DividerProps extends ViewProps {
    */
   mode?: 'padding' | 'border';
   /**
-   * the border width of the divider, only works when the mode is `border`
+   * the border width of the divider, in the padding, will be considered as space
    * @default 1
    */
   width?: number;
@@ -354,8 +355,8 @@ export interface DividerProps extends ViewProps {
 export interface ButtonProps extends PressableProps {
   children: string | ReactNode;
   /**
-   * button type, if the child of the button is text or that has the title,
-   * the default type will be "primary"
+   * to specify the component type. As default, if the button has title or
+   * string children the property will be "primary"
    */
   type: PrimaryColorType;
   /**
@@ -374,7 +375,7 @@ export interface ButtonProps extends PressableProps {
 
   loadingColor: AllColorsType;
   /**
-   * all availible properties in ActivityIndicator component
+   * all available properties in ActivityIndicator component
    */
   loadingProps: ActivityIndicatorProps;
 
@@ -406,16 +407,16 @@ export interface ButtonProps extends PressableProps {
 
   pressable: boolean;
   /**
-   * in order to use custom pressable config includes pressIn
-   * and pressOut config
+   * to specify the button `pressIn` and `pressOut` custom animation config.
    */
   pressableConfig: UseAnimationConfig;
   /**
-   * @default 0.5
+   * to specify does the button component is an opacity or not, if the property is
+   * "true", the default opacity value will be "0.5".
    */
   opacity: number | boolean;
   /**
-   * in order to use custom opacity config includes pressIn config
+   * to specify the button opacity `pressIn` custom animation config.
    */
   opacityConfig: Pick<UseAnimationConfig, 'pressIn'>;
 }
@@ -425,13 +426,14 @@ export interface UseAnimationConfig {
 }
 export interface FastBaseImageProps extends ImageProps {
   /**
-   * image width, with using width and height, the size property will useless
+   * with using width or height, the size property will useless
    */
-  w?: number;
+  width?: number;
   /**
-   * image height, with using width and height, the size property will useless
+   * with using width or height, the size property will useless
+
    */
-  h?: number;
+  height?: number;
   /**
    * should to use only one of the size property or width and height properties
    * @default md
@@ -440,7 +442,8 @@ export interface FastBaseImageProps extends ImageProps {
 
   radius?: keyof typeof ImageSizes | 'full' | number;
   /**
-   * disable default react naitve image caching, it works will you use to specify image URI
+   * to disable default React Native image caching, it works only when you use URI
+   * to specify the image source
    */
   noCache?: boolean;
   /**
@@ -501,14 +504,14 @@ export interface ProgressProps {
   /**
    * width of progress bar
    */
-  w: number;
+  width: number;
   /**
    * height of progress bar
    * @default md
    */
-  h?: SizeType | number;
+  height?: SizeType | number;
   /**
-   * the progress value, should be between 0 to 100
+   * the progress bar value, should be between 0 to 100
    */
   value: number;
   /**
@@ -532,12 +535,12 @@ export interface InputRef
     'clear' | 'blur' | 'focus' | 'isFocused' | 'setNativeProps'
   > {
   /**
-   * to shake text input (eg when invalid data in input is submitted)
+   * to shake animate text input (e.g. when invalid data in input is submitted)
    * @param duration
    */
   shake: (duration?: number) => void;
   /**
-   * to bounce text input (eg when invalid data in input is submitted)
+   * to bounce animate text input (e.g. when invalid data in input is submitted)
    * @param duration
    */
   bounce: (duration?: number) => void;
@@ -545,19 +548,19 @@ export interface InputRef
 
 export interface InputProps extends TextInputProps {
   /**
-   * to disable text input compeletly and change style to disable mode
+   * to disable text input completely and change style to disabled mode
    */
   disabled?: boolean;
   /**
-   * with enable readonly property, text input no longer editable and just readable
+   * with the property, text input is no longer editable and is just readable
    */
   readonly?: boolean;
   /**
-   * with enable invalid property, text input style will change to error mode
+   * with the property, the text input style will change to invalid mode
    */
   invalid?: boolean;
   /**
-   * to specify that the text input content is password
+   * to specify that the text input content is a password
    */
   passowrd?: boolean;
   /**
@@ -586,7 +589,10 @@ export interface InputProps extends TextInputProps {
   invalidLabel?: string | RenderNodeType;
 
   invalidLabelStyle?: StyleProp<TextStyle>;
-
+  /**
+   * to specify in particular hints to the user such as about
+   * what the text input content should be
+   */
   hintLabel?: string | RenderNodeType;
 
   hintLabelStyle?: StyleProp<TextStyle>;
@@ -595,11 +601,11 @@ export interface InputProps extends TextInputProps {
 
   rightElement?: RenderNodeType;
   /**
-   * it's only works when the component has been left element
+   * it only works when the component has the left element
    */
   leftParentProps?: WrapperProps;
   /**
-   * it's only works when the component has been right element
+   * It only works when the component has the right element
    */
   rightParentProps?: WrapperProps;
   /**
@@ -620,7 +626,7 @@ export interface InputProps extends TextInputProps {
 
 export interface UnderlineInputProps extends InputProps {
   /**
-   * in order to show/hide the border as animatedly when focused and on blurred
+   * in order to show/hide the border animatedly when focused and on blurred
    * @default true
    */
   animatable?: boolean;
@@ -631,7 +637,7 @@ export interface UnderlineInputProps extends InputProps {
    */
   focusDuration?: number;
   /**
-   * the border scale animation duration when input blurred, only works when the animatable
+   * the border scale animation duration when input is blurred, only works when the animatable
    * property is enabled
    * @default 200ms
    */
@@ -654,7 +660,7 @@ export interface GapProps {
    * the space value between each items
    * @default xs
    */
-  space?: keyof typeof DefaultSizes | number;
+  space?: SizeType | number;
   /**
    * to reverse children's items priority
    * @default false
@@ -664,7 +670,7 @@ export interface GapProps {
    *  the behavior could be style or element:
    * - style: will add margin style to your element based on the current mode (Please consider style only add to element
    * if the children elements could accept style, such as View, Text, Image, etc.)
-   * - divider: will add a divider between your children's elements based on the current mode
+   * - divider: will add a divider component between your children's elements based on the current mode
    * @default divider
    */
   behavior?: 'style' | 'divider';

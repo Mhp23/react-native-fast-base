@@ -15,7 +15,7 @@
 <br />
 
 <div align="center">
-  <a href="https://fastbase.mhpdev.com">Website</a> · <a href="https://fastbase.mhpdev.com">Documentation</a> · <a href="https://fastbase.mhpdev.com">Demo (Expo)</a>
+  <a href="/docs/USAGE.md">Documentation</a> · <a href="/example/src/">Examples</a> · <a href="">Demo (Expo)</a>
 </div>
 
 <br />
@@ -34,11 +34,18 @@
 
 ## Introduction (v2)
 
-<p align="justify">
-React native fast base will help you to develop your apps faster with optimized and tested components.
-</p>
+React native fast base UI kit will help you to develop your apps faster with optimized and tested components.
 
 ## 💫 Features
+
+- <strong>Cross-platform</strong> <i>(Android, iOS, and Web also support for both bare React Native and Expo)</i>
+- <strong>Easy to use</strong>
+- <strong>Responsive UI</strong>
+- <strong>Highly customizable</strong>
+- <strong>Highly themeable</strong> - <a href="/docs/USAGE.md#2-🎨-theme-system-design">theme design</a>
+- <strong>Written by Typescript, fully typed, and extendable</strong>
+- <strong>Dark/Light mode support</strong>
+- <strong>Attractive components</strong>
 
 ## 📀 Installation
 
@@ -68,17 +75,39 @@ yarn add react-native-safe-area-context
 npm install react-native-safe-area-context
 ```
 
-## 📚 Documentation + Examples
-
-```tsx
-
-```
-
 ## 🚀 Quick Start
 
 ```tsx
+import * as React from 'react';
+import {Container, FastBaseProvider} from '@fast-base/native';
 
+const theme = 'dark';
+
+const MyAwesomeComponent: React.FC = () => {
+  return (
+    <Container p={10}>
+      <Gap>
+        <Button opacity type="primary" title="Opacity Button" />
+        <Button pressable type="success" title="Pressable Button" />
+      </Gap>
+    </Container>
+  );
+};
+
+export default function App() {
+  return (
+    <FastBaseProvider mode={theme}>
+      <MyAwesomeComponent />
+    </FastBaseProvider>
+  );
+}
 ```
+
+Please see the [example directory](/example/src/) for more examples.
+
+## 📚 Documentation
+
+Please see the [usage documentation](/docs/USAGE.md) to learn how to use the components as basic and advanced usages to have high efficiency.
 
 ## ❤️ Support
 
@@ -88,7 +117,7 @@ if you need any help: [business.mhpdev@gmail.com](mailto:business.mhpdev@gmail.c
 
 ## 🤝 Contribution
 
-The doors of contribution are open, Please see the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+Please see the [contributing guide](/docs/CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
 
 ## License
 

@@ -5,7 +5,7 @@ exports[`ProgressBar component should render correctly 1`] = `
   style={
     Object {
       "backgroundColor": "#ECF0F1",
-      "borderRadius": 50,
+      "borderRadius": 104.16666666666667,
       "height": 20.833333333333336,
       "overflow": "hidden",
       "width": 208.33333333333334,

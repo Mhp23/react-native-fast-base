@@ -9,9 +9,9 @@ const defaultProps: TextProps = {
   size: 'md',
 };
 /**
- * in typescript, the Text component allows you to use the custom fonts
- * that you added to your project, only need to wrap your type inside it
- * like the below example:
+ * in typescript, the Text component allows you to use custom fonts that
+ * you added to your project, only need to wrap your type inside it like
+ * the below example:
  * ```
  * <Text<'MyFont1' | 'MyFont2'> {...props}>
  *  Awesome Text!
@@ -21,11 +21,11 @@ const defaultProps: TextProps = {
 const Text = React.forwardRef(
   <T extends string = ''>(
     {
+      ax,
       font,
       size,
       color,
       style,
-      alignX,
       weight,
       height,
       children,
@@ -44,13 +44,13 @@ const Text = React.forwardRef(
       );
       return makeStyle({
         fontSize,
-        color: textColor,
+        textAlign: ax,
         fontFamily: font,
-        textAlign: alignX,
+        color: textColor,
         fontWeight: weight,
         lineHeight: height,
       });
-    }, [color, colors?.text, rs, size, font, alignX, weight, height]);
+    }, [color, colors?.text, rs, size, font, ax, weight, height]);
 
     return (
       <NativeText

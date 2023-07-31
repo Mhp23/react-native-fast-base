@@ -49,14 +49,14 @@ const Wrapper = React.forwardRef<View, WrapperProps>(
       ml,
       me,
       ms,
+      ax,
+      ay,
       self,
       flex,
       mode,
       style,
       width,
       height,
-      alignX,
-      alignY,
       children,
       background,
       ...rest
@@ -98,14 +98,14 @@ const Wrapper = React.forwardRef<View, WrapperProps>(
         width: rw(width),
         height: rh(height),
         alignSelf: self,
-        alignItems: alignX,
-        justifyContent: alignY,
+        alignItems: ax,
+        justifyContent: ay,
         ...(mode !== 'normal' && {
           flexDirection: mode,
           flexWrap: 'wrap',
         }),
       });
-    }, [rw, rh, self, alignX, alignY, width, height, flex, mode]);
+    }, [rw, rh, self, ax, ay, width, height, flex, mode]);
 
     return (
       <View

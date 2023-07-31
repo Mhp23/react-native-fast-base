@@ -8,17 +8,17 @@ import {DefaultSizes, PrimaryColors, ProgressProps} from '../../core';
 const MIN_VALUE = 0;
 const MAX_VALUE = 100;
 
-const defaultProps: Omit<ProgressProps, 'w' | 'value'> = {
-  h: 'md',
+const defaultProps: Omit<ProgressProps, 'width' | 'value'> = {
+  height: 'md',
   useNativeDriver: true,
 };
 
 const Progress: React.FC<ProgressProps> = ({
-  w,
-  h,
   style,
   value,
   isRTL,
+  width,
+  height,
   background,
   progressColor,
   useNativeDriver,
@@ -29,28 +29,30 @@ const Progress: React.FC<ProgressProps> = ({
 
   const animatedWidth = React.useRef(new Animated.Value(value));
 
-  const width = React.useMemo(() => {
-    if (typeof w === 'number') {
-      return rs(w);
+  const progressWidth = React.useMemo(() => {
+    if (typeof width === 'number') {
+      return rs(width);
     } else {
       throw new Error('width of progress bar should be numeric value');
     }
-  }, [rs, w]);
+  }, [rs, width]);
 
   const containerStyle = useStyle(() => {
-    const height = rs(typeof h === 'number' ? h : DefaultSizes[h] - 2);
+    const progressHeight = rs(
+      typeof height === 'number' ? height : DefaultSizes[height] - 2,
+    );
     const backgroundColor = colorSelector(background) || colors?.flat;
     return StyleSheet.flatten([
       {
-        width,
-        height,
         backgroundColor,
         overflow: 'hidden',
-        borderRadius: w / 2,
+        width: progressWidth,
+        height: progressHeight,
+        borderRadius: progressWidth / 2,
       },
       style,
     ]);
-  }, [rs, h, background, w, style, width, colors?.flat]);
+  }, [rs, height, background, colors?.flat, progressWidth, style]);
 
   const progressBarStyle = useStyle(() => {
     const backgroundColor =
@@ -86,7 +88,10 @@ const Progress: React.FC<ProgressProps> = ({
               {
                 translateX: animatedWidth.current.interpolate({
                   inputRange: [0, 100],
-                  outputRange: [(isRTL ? width : -1 * width) / 2, 0],
+                  outputRange: [
+                    (isRTL ? progressWidth : -1 * progressWidth) / 2,
+                    0,
+                  ],
                 }),
               },
               {

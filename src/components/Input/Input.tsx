@@ -177,7 +177,7 @@ const Input = React.forwardRef<
           style={StyleSheet.flatten([wrapperStyle, style])}
           mode="row">
           {!leftElement ? null : (
-            <Wrapper alignY="center" {...leftParentProps}>
+            <Wrapper ay="center" {...leftParentProps}>
               {renderNode(leftElement)}
             </Wrapper>
           )}
@@ -193,7 +193,7 @@ const Input = React.forwardRef<
             {...rest}
           />
           {!rightElement ? null : (
-            <Wrapper alignY="center" {...rightParentProps}>
+            <Wrapper ay="center" {...rightParentProps}>
               {renderNode(rightElement)}
             </Wrapper>
           )}

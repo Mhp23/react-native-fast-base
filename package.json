@@ -1,7 +1,7 @@
 {
   "name": "@fast-base/native",
   "version": "2.0.0",
-  "description": "Easier and faster developing your React Native apps",
+  "description": "⭐️ Easier & Faster Develop Your React Native (Expo) App (Android, iOS & Web) ⭐️",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
   "types": "lib/typescript/src/index.d.ts",
@@ -46,7 +46,7 @@
     "layouts"
   ],
   "repository": "https://github.com/Mhp23/react-native-fast-base",
-  "author": "mhp23 <mhpsoftwaredeveloper@gmail.com> (https://github.com/Mhp23)",
+  "author": "mhp23 <business.mhpdev@gmail.com> (https://github.com/Mhp23)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Mhp23/react-native-fast-base/issues"
@@ -64,7 +64,6 @@
     "@types/jest": "^28.1.2",
     "@types/react": "~17.0.21",
     "@types/react-native": "0.70.0",
-    "@types/react-native-vector-icons": "^6.4.13",
     "commitlint": "^17.6.5",
     "del-cli": "^5.0.0",
     "eslint": "^8.4.1",
@@ -75,7 +74,7 @@
     "prettier": "^2.0.5",
     "react": "18.2.0",
     "react-native": "0.71.4",
-    "react-native-builder-bob": "^0.20.4",
+    "react-native-builder-bob": "^0.21.3",
     "react-native-safe-area-context": "^4.5.3",
     "react-test-renderer": "^18.2.0",
     "reassure": "^0.9.1",

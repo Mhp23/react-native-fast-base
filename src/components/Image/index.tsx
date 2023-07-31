@@ -23,10 +23,10 @@ const DEFAULT_OPACITY = 0.3;
 const Image = React.forwardRef<NativeImage, FastBaseImageProps>(
   (
     {
-      w,
-      h,
       size,
       style,
+      width,
+      height,
       source,
       radius,
       noCache,
@@ -50,7 +50,7 @@ const Image = React.forwardRef<NativeImage, FastBaseImageProps>(
 
     const imageStyle = useStyle(() => {
       const imgStyles: ImageStyle = {};
-      if (!w && !h) {
+      if (!width && !height) {
         if (size in ImageSizes) {
           Object.assign(imgStyles, {
             height: rh(ImageSizes[size]),
@@ -62,11 +62,11 @@ const Image = React.forwardRef<NativeImage, FastBaseImageProps>(
           );
         }
       } else {
-        if (w) {
-          Object.assign(imgStyles, {width: rs(w)});
+        if (width) {
+          Object.assign(imgStyles, {width: rs(width)});
         }
-        if (h) {
-          Object.assign(imgStyles, {height: rs(h)});
+        if (height) {
+          Object.assign(imgStyles, {height: rs(height)});
         }
       }
       if (aspectRatio) {
@@ -82,7 +82,7 @@ const Image = React.forwardRef<NativeImage, FastBaseImageProps>(
         Object.assign(imgStyles, {borderRadius: radius});
       }
       return imgStyles;
-    }, [w, h, aspectRatio, radius, size, rh, rs]);
+    }, [width, height, aspectRatio, radius, size, rh, rs]);
 
     const animationStyle = useStyle(() => {
       return {

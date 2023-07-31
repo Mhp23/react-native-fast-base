@@ -19,7 +19,7 @@ const Divider = React.forwardRef<View, DividerProps>(
     const {rs} = useRM();
 
     const dividerStyles = useStyle<ViewStyle>(() => {
-      const borderColor = colorSelector(color) || colors?.flat;
+      const borderColor = colorSelector(color) || colors?.border;
       return makeStyle<ViewStyle>({
         ...(mode === 'padding'
           ? {
@@ -36,7 +36,7 @@ const Divider = React.forwardRef<View, DividerProps>(
                   }),
             }),
       });
-    }, [rs, mode, width, color, direction, colors?.flat]);
+    }, [rs, mode, width, color, direction, colors?.border]);
 
     return (
       <View

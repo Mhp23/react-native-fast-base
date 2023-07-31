@@ -73,7 +73,7 @@ const InputExample: React.FC = () => {
       <Button pressable size="sm" onPress={() => ref.current?.clear()}>
         Clear!
       </Button>
-      <Text color={colors?.secondText} alignX="justify" size={13}>
+      <Text color={colors?.secondText} ax="justify" size={13}>
         The above action buttons were been referenced to the first text input.{' '}
       </Text>
     </React.Fragment>
