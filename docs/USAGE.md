@@ -17,14 +17,8 @@
 <br />
 
 <div align="center">
-  <a href="../README.md#📀-installation">Installation</a> · <a href="../example/src/">Examples</a> · <a href="">Demo (Expo)</a>
+  <a href="../README.md#📀-installation">Installation</a> · <a href="../example/src/">Examples</a>
 </div>
-
-- [1. Responsive UI](#1-📱-responsive-ui)<br/>
-- [2. Theme System Design](#2-🎨-theme-system-design)<br/>
-- [3. Components](#3-💅-components)<br/>
-- [4. Methods](#4-🏭-methods)
-- [5. V1 -> V2](#5-🚶‍♂️-v1---v2)
 
 ## 1. 📱 Responsive UI
 
@@ -223,6 +217,7 @@ changeMode('dark' | 'light', async newTheme => {
 - [Divider](#divider)<br/>
 - [Gap](#gap)<br/>
 - [ProgressBar](#progressbar)<br/>
+- ...Completing
 
 ## Wrapper
 

@@ -15,7 +15,7 @@
 <br />
 
 <div align="center">
-  <a href="/docs/USAGE.md">Documentation</a> · <a href="/example/src/">Examples</a> · <a href="">Demo (Expo)</a>
+  <a href="/docs/USAGE.md">Documentation</a> · <a href="/example/src/">Examples</a>
 </div>
 
 <br />
@@ -42,7 +42,7 @@ React native fast base UI kit will help you to develop your apps faster with opt
 - <strong>Easy to use</strong>
 - <strong>Responsive UI</strong>
 - <strong>Highly customizable</strong>
-- <strong>Highly themeable</strong> - <a href="/docs/USAGE.md#2-🎨-theme-system-design">theme design</a>
+- <strong>Highly themeable</strong>
 - <strong>Written by Typescript, fully typed, and extendable</strong>
 - <strong>Dark/Light mode support</strong>
 - <strong>Attractive components</strong>
