@@ -1,6 +1,5 @@
 import {type DependencyList, useMemo} from 'react';
 import {
-  StyleSheet,
   type StyleProp,
   type TextStyle,
   type ViewStyle,
@@ -12,7 +11,7 @@ const useStyle = <T extends ViewStyle | TextStyle | ImageStyle>(
   deps?: DependencyList,
 ): StyleProp<T> => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  return useMemo(() => StyleSheet.create(factory()), deps);
+  return useMemo(factory, deps);
 };
 
 export default useStyle;
