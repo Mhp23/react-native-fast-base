@@ -36,14 +36,21 @@
     "bootstrap": "yarn example && yarn install"
   },
   "keywords": [
-    "react-native",
+    "android",
+    "ios",
+    "web",
+    "react native",
     "reactjs",
-    "reactnative",
-    "fast-base",
+    "native",
+    "react",
+    "ui library",
+    "responsive ui",
     "bootstrap",
-    "darkmode",
-    "wrapper",
-    "layouts"
+    "dark mode",
+    "mergeRefs",
+    "react native ui",
+    "react native kit",
+    "react native component"
   ],
   "repository": "https://github.com/Mhp23/react-native-fast-base",
   "author": "mhp23 <business.mhpdev@gmail.com> (https://github.com/Mhp23)",
@@ -53,6 +60,7 @@
   },
   "homepage": "https://github.com/Mhp23/react-native-fast-base#readme",
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
@@ -103,7 +111,7 @@
       "<rootDir>/lib/"
     ],
     "transformIgnorePatterns": [
-      "node_modules/(?!(@react-native|react-native|react-native-vector-icons))"
+      "node_modules/(?!(@react-native|react-native))"
     ]
   },
   "commitlint": {

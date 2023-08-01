@@ -103,11 +103,11 @@ export default function App() {
 }
 ```
 
-Please see the [example directory](/example/src/) for more examples.
+Check out the [example directory](/example/src/) for more examples.
 
 ## 📚 Documentation
 
-Please see the [usage documentation](/docs/USAGE.md) to learn how to use the components as basic and advanced usages to have high efficiency.
+Check out the [usage documentation](/docs/USAGE.md) to learn how to use the components as basic and advanced usages to have high efficiency.
 
 ## ❤️ Support
 
@@ -117,7 +117,7 @@ if you need any help: [business.mhpdev@gmail.com](mailto:business.mhpdev@gmail.c
 
 ## 🤝 Contribution
 
-Please see the [contributing guide](/docs/CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+Check out the [contributing guide](/docs/CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
 
 ## License
 
