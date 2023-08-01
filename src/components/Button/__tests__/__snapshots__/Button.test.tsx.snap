@@ -32,6 +32,7 @@ exports[`Button component should render correcly 1`] = `
   onResponderTerminate={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
+  role="button"
   style={
     Object {
       "alignItems": "center",

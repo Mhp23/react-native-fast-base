@@ -172,6 +172,8 @@ export const useInputStyle = ({
   const textInputStyle = useStyle(() => {
     let appliedStyles: TextStyle = {
       flex: 1,
+      //@ts-expect-error it's only works for web
+      outlineStyle: 'none',
       color: disabled ? colors?.disabled : colors?.text,
     };
     if (size in DefaultSizes) {

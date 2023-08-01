@@ -44,6 +44,7 @@ exports[`Input components should render outline correctly 1`] = `
           "color": "#000000",
           "flex": 1,
           "fontSize": 27.083333333333336,
+          "outlineStyle": "none",
           "paddingBottom": 21.666666666666668,
           "paddingEnd": 27.083333333333336,
           "paddingStart": 27.083333333333336,
@@ -97,6 +98,7 @@ exports[`Input components should render underline correctly 1`] = `
           "color": "#000000",
           "flex": 1,
           "fontSize": 27.083333333333336,
+          "outlineStyle": "none",
           "paddingBottom": 21.666666666666668,
           "paddingTop": 21.666666666666668,
         }

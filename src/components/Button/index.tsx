@@ -214,6 +214,7 @@ const Button = React.forwardRef<any, Partial<ButtonProps>>(
         })}>
         <Pressable
           ref={ref}
+          role="button"
           disabled={disabled}
           onPressOut={onPressOut}
           onPress={onButtonPress}
@@ -221,6 +222,7 @@ const Button = React.forwardRef<any, Partial<ButtonProps>>(
           accessibilityRole="button"
           onPressIn={onButtonPressIn}
           onLongPress={onLongButtonPress}
+          aria-busy={accessibilityState.busy}
           accessibilityState={accessibilityState}
           style={StyleSheet.flatten([memorizedButtonStyle, style])}
           {...rest}>

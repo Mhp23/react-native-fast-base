@@ -20,10 +20,16 @@ const ImagesCompression: React.FC = () => {
     <React.Fragment>
       {Sizes.map(size => {
         return (
-          <Image key={size} size={size} radius={size} source={{uri: IMAGE}} />
+          <Image
+            key={size}
+            size={size}
+            radius={size}
+            skeletonLoading
+            source={{uri: IMAGE}}
+          />
         );
       })}
-      <Image radius="full" source={{uri: IMAGE}} />
+      <Image skeletonLoading radius="full" source={{uri: IMAGE}} />
     </React.Fragment>
   );
 };
