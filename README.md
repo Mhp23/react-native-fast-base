@@ -75,6 +75,18 @@ yarn add react-native-safe-area-context
 npm install react-native-safe-area-context
 ```
 
+## 💅 Components
+
+- [Wrapper](/docs/USAGE.md#wrapper)<br/>
+- [Container](/docs/USAGE.md#container)<br/>
+- [Text](/docs/USAGE.md#text)<br/>
+- [Button](/docs/USAGE.md#button)
+- [Input](/docs/USAGE.md#input)
+- [Image](/docs/USAGE.md#image)
+- [Divider](/docs/USAGE.md#divider)<br/>
+- [Gap](/docs/USAGE.md#gap)<br/>
+- [ProgressBar](/docs/USAGE.md#progressbar)<br/>
+
 ## 🚀 Quick Start
 
 ```tsx
