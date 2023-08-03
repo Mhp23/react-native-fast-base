@@ -51,4 +51,4 @@ const Divider = React.forwardRef<View, DividerProps>(
 
 Divider.defaultProps = defaultProps;
 
-export default Divider;
+export default React.memo(Divider);
