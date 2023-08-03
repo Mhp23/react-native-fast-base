@@ -1,6 +1,6 @@
 {
   "name": "@fast-base/native",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "⭐️ Easier & Faster Develop Your React Native (Expo) App (Android, iOS & Web) ⭐️",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
