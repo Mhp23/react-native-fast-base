@@ -172,10 +172,15 @@ export const useInputStyle = ({
   const textInputStyle = useStyle(() => {
     let appliedStyles: TextStyle = {
       flex: 1,
-      //@ts-expect-error it's only works for web
-      outlineStyle: 'none',
       color: disabled ? colors?.disabled : colors?.text,
     };
+    if (Platform.OS === 'web') {
+      appliedStyles = {
+        ...appliedStyles,
+        //@ts-expect-error it's only works for web
+        outlineStyle: 'none',
+      };
+    }
     if (size in DefaultSizes) {
       const padding = Platform.select({
         android: rs(InputSpaceSizes[size] * 0.5),
