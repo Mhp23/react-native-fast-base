@@ -38,14 +38,19 @@ React native fast base UI kit will help you to develop your apps faster with opt
 
 ## 💫 Features
 
-- <strong>Cross-platform</strong> <i>(Android, iOS, and Web also support for both bare React Native and Expo)</i>
+- <strong>Cross-platform</strong>
 - <strong>Easy to use</strong>
+
 - <strong>Responsive UI</strong>
+
 - <strong>Highly customizable</strong>
+
 - <strong>Highly themeable</strong>
-- <strong>Written by Typescript, fully typed, and extendable</strong>
+
 - <strong>Dark/Light mode support</strong>
 - <strong>Attractive components</strong>
+
+- <strong>Written by Typescript, fully typed, and extendable</strong>
 
 ## 📀 Installation
 
@@ -74,6 +79,8 @@ yarn add react-native-safe-area-context
 ```
 npm install react-native-safe-area-context
 ```
+
+### <a target="blank" href="https://github.com/Mhp23/fast-base-icons">Do you need modern and customizable SVG-based icons?</a>
 
 ## 💅 Components
 
