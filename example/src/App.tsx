@@ -5,7 +5,7 @@ const theme = 'dark';
 
 export default function App() {
   return (
-    <FastBaseProvider mode={theme}>
+    <FastBaseProvider dir="ltr" mode={theme}>
       <Container>
         <></>
       </Container>

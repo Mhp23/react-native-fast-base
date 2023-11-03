@@ -19,6 +19,11 @@ const makeLayoutStyle = (
   styles: StyleProp<ViewStyle>,
   direction: DirectionType = 'ltr',
 ) => {
+  if (direction !== 'rtl' && direction !== 'ltr') {
+    throw new Error(
+      'The passed layout direction should be either "ltr" or "rtl"',
+    );
+  }
   const flatedStyles = StyleSheet.flatten(styles);
 
   if (direction === 'ltr') {
@@ -77,6 +82,11 @@ const makeTextStyle = (
   styles: StyleProp<TextStyle>,
   direction: DirectionType = 'ltr',
 ) => {
+  if (direction !== 'rtl' && direction !== 'ltr') {
+    throw new Error(
+      'The passed layout direction should be either "ltr" or "rtl"',
+    );
+  }
   let flatedStyles = StyleSheet.flatten(styles);
 
   if (direction === 'ltr') {

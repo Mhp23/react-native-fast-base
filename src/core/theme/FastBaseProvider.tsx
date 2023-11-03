@@ -4,6 +4,7 @@ import type {
   ThemeContextProps,
   ThemeContentProps,
   ThemeProviderProps,
+  DirectionType,
 } from '../types';
 import Colors from '../default/colors';
 import extendTheme from './extendTheme';
@@ -19,11 +20,13 @@ export const ThemeContext = React.createContext<ThemeContextProps>(
 );
 
 const defaultProps: ThemeProviderProps = {
+  dir: 'ltr',
   theme: extendTheme(),
   enableSystemMode: true,
 };
 
 const FastBaseProvider: React.FC<PropsWithChildren<ThemeProviderProps>> = ({
+  dir,
   mode,
   theme,
   children,
@@ -46,9 +49,10 @@ const FastBaseProvider: React.FC<PropsWithChildren<ThemeProviderProps>> = ({
       return {
         ...(currentMode === 'dark' ? theme.DarkTheme : theme.DefaultTheme),
         mode: currentMode,
+        dir,
       };
     },
-    [enableSystemMode, mode, theme],
+    [dir, enableSystemMode, mode, theme.DarkTheme, theme.DefaultTheme],
   );
 
   const [currentTheme, setCurrentTheme] =
@@ -74,6 +78,19 @@ const FastBaseProvider: React.FC<PropsWithChildren<ThemeProviderProps>> = ({
     [getCurrentTheme],
   );
 
+  const changeDir = React.useCallback(
+    (newDir: DirectionType) => {
+      if (newDir === 'ltr' || newDir === 'rtl') {
+        setCurrentTheme({...currentTheme, dir: newDir});
+      } else {
+        throw new Error(
+          "The new direction passed to 'changeDir' should be either 'ltr' or 'rtl'",
+        );
+      }
+    },
+    [currentTheme],
+  );
+
   const onColorSchemeChange = React.useCallback(
     ({colorScheme}: {colorScheme: ColorSchemeName}) => {
       setCurrentTheme(getCurrentTheme(colorScheme, true));
@@ -86,13 +103,21 @@ const FastBaseProvider: React.FC<PropsWithChildren<ThemeProviderProps>> = ({
       ...currentTheme,
       defaultColors: Colors,
       changeMode,
+      changeDir,
     };
-  }, [currentTheme, changeMode]);
+  }, [currentTheme, changeMode, changeDir]);
 
   React.useEffect(() => {
     setCurrentTheme(getCurrentTheme(mode));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode, theme]);
+
+  React.useEffect(() => {
+    if (currentTheme?.dir !== dir) {
+      changeDir(dir);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dir]);
 
   React.useEffect(() => {
     let unSubscribe: NativeEventSubscription;

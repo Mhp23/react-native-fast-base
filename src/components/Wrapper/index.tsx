@@ -1,9 +1,9 @@
 import React from 'react';
-import {useSpaceStyle, useStyle} from '../../hooks';
-import type {WrapperProps} from '../../core';
+import {useSpaceStyle, useStyle, useTheme} from '../../hooks';
+import type {PropsWithLayout, WrapperProps} from '../../core';
 import {useRM} from 'react-native-full-responsive';
-import {colorSelector, makeStyle} from '../../utils';
-import {StyleSheet, View, type ViewStyle} from 'react-native';
+import {colorSelector, makeStyle, makeLayoutStyle} from '../../utils';
+import {View, type ViewStyle} from 'react-native';
 
 const defaultProps: WrapperProps = {
   mode: 'normal',
@@ -28,7 +28,7 @@ const defaultProps: WrapperProps = {
   ms: 0,
 };
 
-const Wrapper = React.forwardRef<View, WrapperProps>(
+const Wrapper = React.forwardRef<View, PropsWithLayout<WrapperProps>>(
   (
     {
       p,
@@ -59,10 +59,13 @@ const Wrapper = React.forwardRef<View, WrapperProps>(
       height,
       children,
       background,
+      dir: direction,
       ...rest
     },
     ref,
   ) => {
+    const {dir} = useTheme();
+
     const {rh, rw} = useRM();
 
     const spaceStyle = useSpaceStyle({
@@ -107,17 +110,15 @@ const Wrapper = React.forwardRef<View, WrapperProps>(
       });
     }, [rw, rh, self, ax, ay, width, height, flex, mode]);
 
+    const layoutStyle = useStyle<ViewStyle>(() => {
+      return makeLayoutStyle(
+        [backgroundStyle, wrapperStyles, spaceStyle, style],
+        direction ?? dir,
+      );
+    }, [backgroundStyle, dir, direction, spaceStyle, style, wrapperStyles]);
+
     return (
-      <View
-        ref={ref}
-        style={StyleSheet.flatten([
-          backgroundStyle,
-          wrapperStyles,
-          spaceStyle,
-          style,
-        ])}
-        testID="FAST_BASE_WRAPPER"
-        {...rest}>
+      <View ref={ref} style={layoutStyle} testID="FAST_BASE_WRAPPER" {...rest}>
         {children}
       </View>
     );

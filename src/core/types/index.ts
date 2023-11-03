@@ -55,12 +55,16 @@ export enum InputSpaceSizes {
   lg = 14,
   xl = 15,
 }
+export type DirectionType = 'ltr' | 'rtl';
 export type SOmit<S extends string> = S | Omit<string, S>;
 export type SNOmit<S extends string | number> = S | Omit<string | number, S>;
 export type AllColorsType =
   SOmit<`${keyof typeof Colors}-${keyof ColorsProps}`>;
 export type PropsWithChildren<P = unknown> = P & {
   children?: React.ReactNode | undefined;
+};
+export type PropsWithLayout<P = unknown> = P & {
+  dir?: DirectionType;
 };
 export type RenderNodeType = React.ReactNode | (() => React.ReactNode);
 export type MappedType = {
@@ -136,6 +140,7 @@ export type DefaultThemeColorsProps = Partial<
   }
 >;
 export interface DefaultThemeContentProps {
+  dir?: DirectionType;
   mode?: ColorSchemeName;
   defaultColors?: typeof Colors;
 }
@@ -163,11 +168,13 @@ export type ThemeContextProps<T extends MappedType = {}> =
        */
       changeModeCallback?: (newMode: ColorSchemeName) => void | Promise<void>,
     ) => void;
+
+    changeDir: (dir: DirectionType) => void;
   };
 
 export type ThemeProviderProps<T extends MappedType = {}> = Pick<
   DefaultThemeContentProps,
-  'mode'
+  'mode' | 'dir'
 > & {
   theme?: ThemeProps<T>;
   /**
