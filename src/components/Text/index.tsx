@@ -1,9 +1,9 @@
 import React from 'react';
 import {useStyle, useTheme} from '../../hooks';
 import {useRM} from 'react-native-full-responsive';
-import {colorSelector, makeStyle} from '../../utils';
-import {DefaultTextSizes, type TextProps} from '../../core';
-import {StyleSheet, Text as NativeText, type TextStyle} from 'react-native';
+import {Text as NativeText, type TextStyle} from 'react-native';
+import {colorSelector, makeStyle, makeTextStyle} from '../../utils';
+import {DefaultTextSizes, PropsWithLayout, type TextProps} from '../../core';
 
 const defaultProps: TextProps = {
   size: 'md',
@@ -29,11 +29,12 @@ const Text = React.forwardRef(
       weight,
       height,
       children,
+      dir: direction,
       ...rest
-    }: TextProps<T>,
+    }: PropsWithLayout<TextProps<T>>,
     ref?: React.Ref<NativeText>,
   ) => {
-    const {colors} = useTheme();
+    const {colors, dir} = useTheme();
 
     const {rs} = useRM();
 
@@ -52,11 +53,15 @@ const Text = React.forwardRef(
       });
     }, [color, colors?.text, rs, size, font, ax, weight, height]);
 
+    const textLayoutStyle = useStyle<TextStyle>(() => {
+      return makeTextStyle([textStyles, style], direction ?? dir);
+    }, [dir, direction, style, textStyles]);
+
     return (
       <NativeText
         ref={ref}
         testID="FAST_BASE_TEXT"
-        style={StyleSheet.flatten([textStyles, style])}
+        style={textLayoutStyle}
         {...rest}>
         {children}
       </NativeText>
@@ -67,5 +72,5 @@ const Text = React.forwardRef(
 Text.defaultProps = defaultProps;
 
 export default Text as <T extends string = ''>(
-  props: TextProps<T> & {ref?: React.Ref<NativeText>},
+  props: PropsWithLayout<TextProps<T>> & {ref?: React.Ref<NativeText>},
 ) => React.ReactElement;
