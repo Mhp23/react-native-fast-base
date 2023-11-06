@@ -1,4 +1,4 @@
-import {colorSelector} from '../../utils';
+import {colorSelector, makeTextStyle} from '../../utils';
 import {useStyle, useTheme} from '../../hooks';
 import {useRM} from 'react-native-full-responsive';
 import {Platform, StyleSheet, TextStyle, ViewStyle} from 'react-native';
@@ -8,7 +8,9 @@ import {
   PrimaryColors,
   InputSpaceSizes,
   SizeType,
+  DirectionType,
 } from '../../core';
+import {useMemo} from 'react';
 
 const FULL_ROUND = 150;
 
@@ -145,11 +147,14 @@ export const useOutlineStyle = ({
  * @returns
  */
 export const useInputStyle = ({
+  dir,
   size,
   disabled,
   inputStyle,
   background,
-}: Pick<UseStyleType, 'size' | 'disabled' | 'background' | 'inputStyle'>) => {
+}: Pick<UseStyleType, 'size' | 'disabled' | 'background' | 'inputStyle'> & {
+  dir: DirectionType;
+}) => {
   const {rs} = useRM();
 
   const {colors} = useTheme();
@@ -197,8 +202,12 @@ export const useInputStyle = ({
     return appliedStyles;
   }, [rs, size, disabled, colors?.text, colors?.disabled]);
 
+  const textInputLayoutStyle = useMemo(() => {
+    return makeTextStyle([textInputStyle, inputStyle], dir) as TextStyle;
+  }, [inputStyle, textInputStyle, dir]);
+
   return {
     wrapperStyle,
-    textInputStyle: StyleSheet.flatten([textInputStyle, inputStyle]),
+    textInputStyle: textInputLayoutStyle,
   };
 };

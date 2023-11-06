@@ -1,9 +1,9 @@
 import React from 'react';
-import {Button, Wrapper, Container} from '@fast-base/native';
+import {Button, Wrapper, Container, Text, Gap} from '@fast-base/native';
 
 const ButtonExample: React.FC = () => {
   return (
-    <Container>
+    <Container dir="ltr">
       <Wrapper flex ay="space-evenly" ax="center">
         <Button title="Normal Button" />
         <Button
@@ -17,7 +17,7 @@ const ButtonExample: React.FC = () => {
           pressable
           type="success"
           mode="outline"
-          title="Pressable Outiline Button"
+          title="Pressable Outline Button"
         />
         <Button
           shadow
@@ -33,6 +33,19 @@ const ButtonExample: React.FC = () => {
           type="secondary"
           title="Pressable & Opacity Button"
         />
+        <Button size="xl" pressable color="gray-600">
+          <Gap space={10} behavior="style">
+            <Text color="gray-100" size="lg">
+              It's a title!
+            </Text>
+            <Text color="gray-200" size="md">
+              It's a subtitle!
+            </Text>
+            <Text color="gray-300" size="sm">
+              It's a description!
+            </Text>
+          </Gap>
+        </Button>
       </Wrapper>
     </Container>
   );

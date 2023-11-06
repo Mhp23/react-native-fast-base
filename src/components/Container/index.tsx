@@ -1,9 +1,10 @@
 import React from 'react';
-import {colorSelector} from '../../utils';
-import type {ContainerProps} from '../../core';
-import {StyleSheet, type ViewStyle} from 'react-native';
+import {colorSelector, makeLayoutStyle} from '../../utils';
+import type {ContainerProps, PropsWithLayout} from '../../core';
+import {type ViewStyle} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useSpaceStyle, useStyle, useTheme} from '../../hooks';
+import InjectLayout from '../InjectLayout';
 
 const defaultProps: ContainerProps = {
   p: 0,
@@ -26,7 +27,7 @@ const defaultProps: ContainerProps = {
   ms: 0,
 };
 
-const Container = React.forwardRef<any, ContainerProps>(
+const Container = React.forwardRef<any, PropsWithLayout<ContainerProps>>(
   (
     {
       p,
@@ -50,11 +51,12 @@ const Container = React.forwardRef<any, ContainerProps>(
       style,
       children,
       background,
+      dir: direction,
       ...rest
     },
     ref,
   ) => {
-    const {colors} = useTheme();
+    const {dir, colors} = useTheme();
 
     const spaceStyle = useSpaceStyle({
       p,
@@ -82,13 +84,20 @@ const Container = React.forwardRef<any, ContainerProps>(
       return {flex: 1, backgroundColor};
     }, [background, colors?.background]);
 
+    const containerLayoutStyle = useStyle(() => {
+      return makeLayoutStyle(
+        [containerStyles, spaceStyle, style],
+        direction ?? dir,
+      );
+    }, [containerStyles, dir, direction, spaceStyle, style]);
+
     return (
       <SafeAreaView
         ref={ref}
         testID="FAST_BASE_CONTAINER"
-        style={StyleSheet.flatten([containerStyles, spaceStyle, style])}
+        style={containerLayoutStyle}
         {...rest}>
-        {children}
+        <InjectLayout dir={direction}>{children}</InjectLayout>
       </SafeAreaView>
     );
   },

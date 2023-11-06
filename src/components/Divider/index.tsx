@@ -1,10 +1,10 @@
 import React from 'react';
 import type {ViewStyle} from 'react-native';
-import type {DividerProps} from '../../core';
-import {StyleSheet, View} from 'react-native';
+import type {DividerProps, PropsWithLayout} from '../../core';
+import {View} from 'react-native';
 import {useTheme, useStyle} from '../../hooks';
 import {useRM} from 'react-native-full-responsive';
-import {colorSelector, makeStyle} from '../../utils';
+import {colorSelector, makeLayoutStyle, makeStyle} from '../../utils';
 
 const defaultProps: DividerProps = {
   width: 1,
@@ -12,9 +12,9 @@ const defaultProps: DividerProps = {
   direction: 'vertical',
 };
 
-const Divider = React.forwardRef<View, DividerProps>(
-  ({mode, color, style, width, direction, ...rest}, ref) => {
-    const {colors} = useTheme();
+const Divider = React.forwardRef<View, PropsWithLayout<DividerProps>>(
+  ({mode, color, style, width, direction, dir: ldir, ...rest}, ref) => {
+    const {colors, dir} = useTheme();
 
     const {rs} = useRM();
 
@@ -38,11 +38,15 @@ const Divider = React.forwardRef<View, DividerProps>(
       });
     }, [rs, mode, width, color, direction, colors?.border]);
 
+    const dividerLayoutStyle = useStyle(() => {
+      return makeLayoutStyle([dividerStyles, style], ldir ?? dir);
+    }, [dir, dividerStyles, ldir, style]);
+
     return (
       <View
         ref={ref}
         testID="FAST_BASE_DIVIDER"
-        style={StyleSheet.flatten([dividerStyles, style])}
+        style={dividerLayoutStyle}
         {...rest}
       />
     );

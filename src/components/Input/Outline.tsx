@@ -1,13 +1,9 @@
 import React from 'react';
-import {
-  NativeSyntheticEvent,
-  StyleSheet,
-  TextInputFocusEventData,
-} from 'react-native';
 import {useTheme} from '../../hooks';
 import {useOutlineStyle} from './styles';
 import Input, {defaultInputProps} from './Input';
 import {InputRef, OutlineInputProps} from '../../core';
+import {NativeSyntheticEvent, TextInputFocusEventData} from 'react-native';
 
 const DEFAULT_PADDING = 8;
 
@@ -103,8 +99,8 @@ const OutlineInput = React.forwardRef<InputRef, OutlineInputProps>(
         onFocus={e => onInputFocus(e, true)}
         leftParentProps={leftElementParentProps}
         rightParentProps={rightElementParentProps}
-        style={StyleSheet.flatten([containerStyle, style])}
-        inputStyle={StyleSheet.flatten([textInputStyle, inputStyle])}
+        style={[containerStyle, style]}
+        inputStyle={[textInputStyle, inputStyle]}
         {...rest}
       />
     );

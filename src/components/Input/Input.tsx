@@ -1,11 +1,16 @@
 import Text from '../Text';
 import Wrapper from '../Wrapper';
-import {renderNode} from '../../utils';
+import {makeTextStyle, renderNode} from '../../utils';
 import {useInputStyle} from './styles';
 import {useStyle, useTheme} from '../../hooks';
 import React, {useImperativeHandle} from 'react';
-import {Animated, StyleSheet, TextInput} from 'react-native';
-import {InputRef, InputProps, RenderNodeType} from '../../core';
+import {Animated, TextInput} from 'react-native';
+import {
+  InputRef,
+  InputProps,
+  RenderNodeType,
+  PropsWithLayout,
+} from '../../core';
 
 const DEFAULT_LABEL_MARGIN = 8;
 
@@ -19,10 +24,12 @@ export const defaultInputProps: InputProps = {
 
 const Input = React.forwardRef<
   InputRef,
-  InputProps & {
-    mode: 'outline' | 'underline';
-    borderChildren?: RenderNodeType;
-  }
+  PropsWithLayout<
+    InputProps & {
+      mode: 'outline' | 'underline';
+      borderChildren?: RenderNodeType;
+    }
+  >
 >(
   (
     {
@@ -43,6 +50,7 @@ const Input = React.forwardRef<
       leftElement,
       rightElement,
       invalidLabel,
+      dir: direction,
       hintLabelStyle,
       containerStyle,
       borderChildren,
@@ -54,7 +62,7 @@ const Input = React.forwardRef<
     },
     ref: any,
   ) => {
-    const {colors} = useTheme();
+    const {dir, colors} = useTheme();
 
     const inputRef = React.useRef<TextInput>(null);
 
@@ -67,38 +75,66 @@ const Input = React.forwardRef<
       disabled,
       background,
       inputStyle,
+      dir: direction ?? dir,
     });
 
     const inputLabelStyle = useStyle(() => {
-      return StyleSheet.flatten([
-        {
-          fontWeight: '600',
-          color: colors?.secondText,
-          fontSize: textInputStyle.fontSize,
-        },
-        labelStyle,
-      ]);
-    }, [colors?.secondText, labelStyle, textInputStyle.fontSize]);
+      return makeTextStyle(
+        [
+          {
+            fontWeight: '600',
+            color: colors?.secondText,
+            fontSize: textInputStyle.fontSize,
+          },
+          labelStyle,
+        ],
+        direction ?? dir,
+      );
+    }, [
+      colors?.secondText,
+      dir,
+      direction,
+      labelStyle,
+      textInputStyle.fontSize,
+    ]);
 
     const inputHintLabelStyle = useStyle(() => {
-      return StyleSheet.flatten([
-        {
-          color: colors?.secondText,
-          fontSize: textInputStyle.fontSize * 0.9,
-        },
-        hintLabelStyle,
-      ]);
-    }, [colors?.secondText, hintLabelStyle, textInputStyle.fontSize]);
+      return makeTextStyle(
+        [
+          {
+            color: colors?.secondText,
+            fontSize: textInputStyle.fontSize * 0.9,
+          },
+          hintLabelStyle,
+        ],
+        direction ?? dir,
+      );
+    }, [
+      colors?.secondText,
+      dir,
+      direction,
+      hintLabelStyle,
+      textInputStyle.fontSize,
+    ]);
 
     const inputInvalidLabelStyle = useStyle(() => {
-      return StyleSheet.flatten([
-        {
-          color: colors?.error,
-          fontSize: textInputStyle.fontSize * 0.9,
-        },
-        invalidLabelStyle,
-      ]);
-    }, [colors?.error, invalidLabelStyle, textInputStyle.fontSize]);
+      return makeTextStyle(
+        [
+          {
+            color: colors?.error,
+            fontSize: textInputStyle.fontSize * 0.9,
+          },
+          invalidLabelStyle,
+        ],
+        direction ?? dir,
+      );
+    }, [
+      colors?.error,
+      dir,
+      direction,
+      invalidLabelStyle,
+      textInputStyle.fontSize,
+    ]);
 
     const placeHolderColor = React.useMemo(() => {
       return disabled ? colors.disabled : colors?.secondText;
@@ -174,7 +210,7 @@ const Input = React.forwardRef<
             ((!!invalid && !!invalidLabel) || !!hintLabel) &&
             DEFAULT_LABEL_MARGIN
           }
-          style={StyleSheet.flatten([wrapperStyle, style])}
+          style={[wrapperStyle, style]}
           mode="row">
           {!leftElement ? null : (
             <Wrapper ay="center" {...leftParentProps}>

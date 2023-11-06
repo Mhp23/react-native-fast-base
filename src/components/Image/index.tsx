@@ -1,12 +1,16 @@
 import React from 'react';
-import {useStyle} from '../../hooks';
-import {colorSelector} from '../../utils';
+import {useStyle, useTheme} from '../../hooks';
+import {colorSelector, makeLayoutStyle} from '../../utils';
 import {useRM} from 'react-native-full-responsive';
-import {CompositeAnimation, FastBaseImageProps, ImageSizes} from '../../core';
+import {
+  CompositeAnimation,
+  FastBaseImageProps,
+  ImageSizes,
+  PropsWithLayout,
+} from '../../core';
 import {
   Animated,
   ImageStyle,
-  StyleSheet,
   ImageURISource,
   ImageSourcePropType,
   Image as NativeImage,
@@ -20,7 +24,10 @@ const defaultSize: Omit<FastBaseImageProps, 'source'> = {
 
 const DEFAULT_OPACITY = 0.3;
 
-const Image = React.forwardRef<NativeImage, FastBaseImageProps>(
+const Image = React.forwardRef<
+  NativeImage,
+  PropsWithLayout<FastBaseImageProps>
+>(
   (
     {
       size,
@@ -32,6 +39,7 @@ const Image = React.forwardRef<NativeImage, FastBaseImageProps>(
       noCache,
       aspectRatio,
       loadingColor,
+      dir: direction,
       skeletonLoading,
       onError,
       onLoadEnd,
@@ -40,6 +48,8 @@ const Image = React.forwardRef<NativeImage, FastBaseImageProps>(
     },
     ref: any,
   ) => {
+    const {dir} = useTheme();
+
     const {rs, rh} = useRM();
 
     const animatedValue = React.useRef<CompositeAnimation>();
@@ -83,6 +93,13 @@ const Image = React.forwardRef<NativeImage, FastBaseImageProps>(
       }
       return imgStyles;
     }, [width, height, aspectRatio, radius, size, rh, rs]);
+
+    const imageLayoutStyle = useStyle(() => {
+      return makeLayoutStyle(
+        [imageStyle, style],
+        direction ?? dir,
+      ) as ImageStyle;
+    }, [direction, dir, imageStyle, style]);
 
     const animationStyle = useStyle(() => {
       return {
@@ -168,7 +185,7 @@ const Image = React.forwardRef<NativeImage, FastBaseImageProps>(
         source={imageSource}
         testID="FAST_BASE_IMAGE"
         accessibilityRole="image"
-        style={StyleSheet.flatten([imageStyle, style])}
+        style={imageLayoutStyle}
         {...rest}
         onError={onImageError}
         onLoadEnd={onImageLoadEnd}

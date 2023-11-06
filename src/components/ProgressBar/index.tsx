@@ -1,9 +1,14 @@
 import React from 'react';
-import {colorSelector} from '../../utils';
+import {colorSelector, makeLayoutStyle} from '../../utils';
 import {useStyle, useTheme} from '../../hooks';
 import {useRM} from 'react-native-full-responsive';
-import {Animated, StyleSheet, View} from 'react-native';
-import {DefaultSizes, PrimaryColors, ProgressProps} from '../../core';
+import {Animated, View} from 'react-native';
+import {
+  DefaultSizes,
+  PrimaryColors,
+  ProgressProps,
+  PropsWithLayout,
+} from '../../core';
 
 const MIN_VALUE = 0;
 const MAX_VALUE = 100;
@@ -13,19 +18,19 @@ const defaultProps: Omit<ProgressProps, 'width' | 'value'> = {
   useNativeDriver: true,
 };
 
-const Progress: React.FC<ProgressProps> = ({
+const Progress: React.FC<PropsWithLayout<ProgressProps>> = ({
   style,
   value,
-  isRTL,
   width,
   height,
   background,
   progressColor,
+  dir: direction,
   useNativeDriver,
 }) => {
   const {rs} = useRM();
 
-  const {colors} = useTheme();
+  const {colors, dir} = useTheme();
 
   const animatedWidth = React.useRef(new Animated.Value(value));
 
@@ -42,17 +47,29 @@ const Progress: React.FC<ProgressProps> = ({
       typeof height === 'number' ? height : DefaultSizes[height] - 2,
     );
     const backgroundColor = colorSelector(background) || colors?.flat;
-    return StyleSheet.flatten([
-      {
-        backgroundColor,
-        overflow: 'hidden',
-        width: progressWidth,
-        height: progressHeight,
-        borderRadius: progressWidth / 2,
-      },
-      style,
-    ]);
-  }, [rs, height, background, colors?.flat, progressWidth, style]);
+    return makeLayoutStyle(
+      [
+        {
+          backgroundColor,
+          overflow: 'hidden',
+          width: progressWidth,
+          height: progressHeight,
+          borderRadius: progressWidth / 2,
+        },
+        style,
+      ],
+      direction ?? dir,
+    );
+  }, [
+    rs,
+    height,
+    background,
+    colors?.flat,
+    progressWidth,
+    style,
+    direction,
+    dir,
+  ]);
 
   const progressBarStyle = useStyle(() => {
     const backgroundColor =
@@ -89,7 +106,9 @@ const Progress: React.FC<ProgressProps> = ({
                 translateX: animatedWidth.current.interpolate({
                   inputRange: [0, 100],
                   outputRange: [
-                    (isRTL ? progressWidth : -1 * progressWidth) / 2,
+                    (direction === 'rtl' || dir === 'rtl'
+                      ? progressWidth
+                      : -1 * progressWidth) / 2,
                     0,
                   ],
                 }),

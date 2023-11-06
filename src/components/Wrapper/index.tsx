@@ -4,6 +4,7 @@ import type {PropsWithLayout, WrapperProps} from '../../core';
 import {useRM} from 'react-native-full-responsive';
 import {colorSelector, makeStyle, makeLayoutStyle} from '../../utils';
 import {View, type ViewStyle} from 'react-native';
+import InjectLayout from '../InjectLayout';
 
 const defaultProps: WrapperProps = {
   mode: 'normal',
@@ -119,7 +120,7 @@ const Wrapper = React.forwardRef<View, PropsWithLayout<WrapperProps>>(
 
     return (
       <View ref={ref} style={layoutStyle} testID="FAST_BASE_WRAPPER" {...rest}>
-        {children}
+        <InjectLayout dir={direction}>{children}</InjectLayout>
       </View>
     );
   },

@@ -10,9 +10,14 @@ import {
   GestureResponderEvent,
 } from 'react-native';
 import Text from '../Text';
-import {colorSelector} from '../../utils';
+import {colorSelector, makeLayoutStyle, makeTextStyle} from '../../utils';
 import {useRM} from 'react-native-full-responsive';
-import {ButtonProps, DefaultSizes, PrimaryColors} from '../../core';
+import {
+  ButtonProps,
+  DefaultSizes,
+  PrimaryColors,
+  PropsWithLayout,
+} from '../../core';
 import {
   PRESS_IN_CONFIG,
   useAnimation,
@@ -20,10 +25,11 @@ import {
   useStyle,
   useTheme,
 } from '../../hooks';
+import InjectLayout from '../InjectLayout';
 
 const DEFAULT_OPACITY_VALUE = PRESS_IN_CONFIG.toValue;
 
-const Button = React.forwardRef<any, Partial<ButtonProps>>(
+const Button = React.forwardRef<any, Partial<PropsWithLayout<ButtonProps>>>(
   (
     {
       style,
@@ -44,6 +50,7 @@ const Button = React.forwardRef<any, Partial<ButtonProps>>(
       opacityConfig,
       radius = 'xs',
       mode = 'solid',
+      dir: direction,
       pressableConfig,
       disabledTitleStyle,
       disabledTitleColor,
@@ -57,7 +64,7 @@ const Button = React.forwardRef<any, Partial<ButtonProps>>(
     },
     ref,
   ) => {
-    const {colors} = useTheme();
+    const {colors, dir} = useTheme();
 
     const {rs} = useRM();
 
@@ -156,6 +163,33 @@ const Button = React.forwardRef<any, Partial<ButtonProps>>(
       };
     }, [rs, size, textColor]);
 
+    const buttonLayoutStyle = useStyle(() => {
+      return makeLayoutStyle(
+        [memorizedButtonStyle, style as ViewStyle],
+        direction ?? dir,
+      );
+    }, [dir, direction, memorizedButtonStyle, style]);
+
+    const textLayoutStyle = useStyle(() => {
+      return makeTextStyle(
+        [memorizedTitleStyle, titleStyle, disabled && disabledTitleStyle],
+        direction ?? dir,
+      );
+    }, [
+      dir,
+      direction,
+      disabled,
+      disabledTitleStyle,
+      memorizedTitleStyle,
+      titleStyle,
+    ]);
+
+    const loadingLayoutStyle = useStyle(() => {
+      return !loadingProps?.style
+        ? undefined
+        : makeLayoutStyle(loadingProps.style, direction ?? dir);
+    }, [dir, direction, loadingProps?.style]);
+
     const accessibilityState = React.useMemo(() => {
       return {disabled: !!disabled, busy: !!loading};
     }, [disabled, loading]);
@@ -224,7 +258,7 @@ const Button = React.forwardRef<any, Partial<ButtonProps>>(
           onLongPress={onLongButtonPress}
           aria-busy={accessibilityState.busy}
           accessibilityState={accessibilityState}
-          style={StyleSheet.flatten([memorizedButtonStyle, style])}
+          style={buttonLayoutStyle}
           {...rest}>
           {loading ? (
             <ActivityIndicator
@@ -232,20 +266,17 @@ const Button = React.forwardRef<any, Partial<ButtonProps>>(
               color={indicatorColor}
               testID="FAST_BASE_BUTTON_LOADER"
               {...loadingProps}
+              style={loadingLayoutStyle}
             />
           ) : typeof children === 'string' || !!title ? (
             <Text
               testID="FAST_BASE_BUTTON_TITLE"
-              style={StyleSheet.flatten([
-                memorizedTitleStyle,
-                titleStyle,
-                disabled && disabledTitleStyle,
-              ])}
+              style={textLayoutStyle}
               {...titleProps}>
               {children || title}
             </Text>
           ) : (
-            children
+            <InjectLayout dir={direction}>{children}</InjectLayout>
           )}
         </Pressable>
       </ContentWrapperView>

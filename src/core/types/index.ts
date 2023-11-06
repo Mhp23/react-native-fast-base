@@ -396,7 +396,7 @@ export interface ButtonProps extends PressableProps {
 
   titleColor: AllColorsType;
 
-  titleProps: TextProps;
+  titleProps: Omit<TextProps, 'style'>;
 
   radius: SizeType | number;
   /**
@@ -504,10 +504,6 @@ export interface ProgressProps {
    * @default true
    */
   useNativeDriver?: boolean;
-  /**
-   * to fill progress bar right to left
-   */
-  isRTL?: boolean;
   /**
    * width of progress bar
    */
