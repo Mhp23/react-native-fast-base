@@ -32,6 +32,7 @@ const FastBaseProvider: React.FC<PropsWithChildren<ThemeProviderProps>> = ({
   children,
   enableSystemMode,
 }) => {
+  const [currentDir, setCurrentDir] = React.useState<DirectionType>(dir);
   /**
    * processing the current theme of the app that depends on the passed mode and system mode.
    */
@@ -49,20 +50,19 @@ const FastBaseProvider: React.FC<PropsWithChildren<ThemeProviderProps>> = ({
       return {
         ...(currentMode === 'dark' ? theme.DarkTheme : theme.DefaultTheme),
         mode: currentMode,
-        dir,
       };
     },
-    [dir, enableSystemMode, mode, theme.DarkTheme, theme.DefaultTheme],
+    [enableSystemMode, mode, theme.DarkTheme, theme.DefaultTheme],
   );
 
   const [currentTheme, setCurrentTheme] =
     React.useState<ThemeContentProps>(getCurrentTheme);
 
   const changeMode = React.useCallback(
-    async function (
+    async (
       newMode: ColorSchemeName,
       changeModeCallback?: (newMode: ColorSchemeName) => void | Promise<void>,
-    ) {
+    ) => {
       setCurrentTheme(getCurrentTheme(newMode, true));
       /**
        * executing changeModeCallback function if was passed
@@ -79,16 +79,29 @@ const FastBaseProvider: React.FC<PropsWithChildren<ThemeProviderProps>> = ({
   );
 
   const changeDir = React.useCallback(
-    (newDir: DirectionType) => {
+    async (
+      newDir: DirectionType,
+      changeDirCallback?: (newDir: DirectionType) => void | Promise<void>,
+    ) => {
       if (newDir === 'ltr' || newDir === 'rtl') {
-        setCurrentTheme({...currentTheme, dir: newDir});
+        setCurrentDir(newDir);
+        /**
+         * executing changeDirCallback function if was passed
+         */
+        if (changeDirCallback) {
+          try {
+            await Promise.resolve(changeDirCallback(newDir));
+          } catch (error) {
+            console.warn(error);
+          }
+        }
       } else {
         throw new Error(
           "The new direction passed to 'changeDir' should be either 'ltr' or 'rtl'",
         );
       }
     },
-    [currentTheme],
+    [],
   );
 
   const onColorSchemeChange = React.useCallback(
@@ -101,11 +114,12 @@ const FastBaseProvider: React.FC<PropsWithChildren<ThemeProviderProps>> = ({
   const themeContextValue: ThemeContextProps = React.useMemo(() => {
     return {
       ...currentTheme,
+      dir: currentDir,
       defaultColors: Colors,
       changeMode,
       changeDir,
     };
-  }, [currentTheme, changeMode, changeDir]);
+  }, [currentTheme, currentDir, changeMode, changeDir]);
 
   React.useEffect(() => {
     setCurrentTheme(getCurrentTheme(mode));
@@ -113,7 +127,7 @@ const FastBaseProvider: React.FC<PropsWithChildren<ThemeProviderProps>> = ({
   }, [mode, theme]);
 
   React.useEffect(() => {
-    if (currentTheme?.dir !== dir) {
+    if (currentDir !== dir) {
       changeDir(dir);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -99,20 +99,6 @@ export type WrapperModePropType =
   | 'column-reverse'
   | 'row'
   | 'row-reverse';
-export type IconPropsType =
-  | 'AntDesign'
-  | 'Entypo'
-  | 'MaterialIcons'
-  | 'MaterMaterialCommunityIcons'
-  | 'FontAwesome'
-  | 'FontAwesome5'
-  | 'FontAwesome5Pro'
-  | 'Ionicons'
-  | 'Fontisto'
-  | 'Feather'
-  | 'Octicons'
-  | 'SimpleLineIcons'
-  | 'Zocial';
 export interface ColorsProps {
   50: string;
   100: string;
@@ -163,13 +149,18 @@ export type ThemeContextProps<T extends MappedType = {}> =
     changeMode: (
       mode: ColorSchemeName,
       /**
-       * you are able to execute your callback function after the theme mode is changed, such as
+       * you can execute your callback function after the theme mode is changed, such as
        * changing the Android navigation bar color, status bar color, etc.
        */
       changeModeCallback?: (newMode: ColorSchemeName) => void | Promise<void>,
     ) => void;
-
-    changeDir: (dir: DirectionType) => void;
+    changeDir: (
+      dir: DirectionType,
+      /**
+       * you can execute a callback function after the theme layout direction is changed.
+       */
+      changeDirCallback?: (newDir: DirectionType) => void | Promise<void>,
+    ) => void;
   };
 
 export type ThemeProviderProps<T extends MappedType = {}> = Pick<
