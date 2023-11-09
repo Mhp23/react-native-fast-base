@@ -24,57 +24,64 @@ const makeLayoutStyle = (
       'The passed layout direction should be either "ltr" or "rtl"',
     );
   }
-  const flatedStyles = StyleSheet.flatten(styles);
+  const flattenedStyles = StyleSheet.flatten(styles);
 
   if (direction === 'ltr') {
-    return flatedStyles;
+    return flattenedStyles;
   }
   const changedStyle: StyleProp<ViewStyle> = {};
 
-  Object.entries(flatedStyles).forEach(style => {
-    let key = style[0];
-    let value = style[1];
-    /**
-     * converting required key to RTL
-     */
-    if (key.includes('Start')) {
-      key = key.replace('Start', 'End');
-    } else if (key.includes('End')) {
-      key = key.replace('End', 'Start');
-    } else if (key.includes('Right')) {
-      key = key.replace('Right', 'Left');
-    } else if (key.includes('Left')) {
-      key = key.replace('Left', 'Right');
-    } else if (key === 'alignItems') {
-      value = changeFlex(value);
-    } else if (key === 'justifyContent') {
-      value = changeFlex(value);
-    } else if (key === 'alignSelf') {
-      value = changeFlex(value);
-    } else if (key === 'alignContent') {
-      value = changeFlex(value);
-    } else if (key === 'left') {
-      key = 'right';
-    } else if (key === 'right') {
-      key = 'left';
-    }
+  const keys = Object.keys(flattenedStyles);
+  const values = Object.values(flattenedStyles);
+  //flex direction index in the styles
+  const FDIndex = keys.findIndex(key => key === 'flexDirection');
+  const isFlexRow = FDIndex > -1 && values[FDIndex]?.includes('row');
 
-    if (value === undefined || value === null) {
-      Object.assign(changedStyle, {[key]: value});
-      return;
-    } else {
-      /**
-       * converting required values to RTL
-       */
-      if (value === 'row-reverse') {
-        value = 'row';
-      } else if (value === 'row') {
-        value = 'row-reverse';
+  const keyTransformations = new Map([
+    ['Start', 'End'],
+    ['End', 'Start'],
+    ['Right', 'Left'],
+    ['Left', 'Right'],
+  ]);
+  /**
+   * the order of conditions is based on their usage to try to improve the algorithm's time complexity.
+   */
+  for (let i = 0; i < keys.length; ++i) {
+    let key = keys[i];
+    let value = values[i];
+
+    let shouldToCheck = true;
+
+    for (const [from, to] of keyTransformations) {
+      if (key.includes(from)) {
+        key = key.replace(from, to);
+        shouldToCheck = false;
+        break;
       }
     }
+    if (shouldToCheck) {
+      if (key === 'alignItems' && !isFlexRow) {
+        value = changeFlex(value);
+      } else if (key === 'justifyContent' && isFlexRow) {
+        value = changeFlex(value);
+      } else if (['alignSelf', 'alignContent'].includes(key)) {
+        value = changeFlex(value);
+      } else if (key === 'left') {
+        key = 'right';
+      } else if (key === 'right') {
+        key = 'left';
+      }
+    }
+    if (value === undefined || value === null) {
+      Object.assign(changedStyle, {[key]: value});
+      continue;
+    } else if (value === 'row-reverse') {
+      value = 'row';
+    } else if (value === 'row') {
+      value = 'row-reverse';
+    }
     Object.assign(changedStyle, {[key]: value});
-  });
-
+  }
   return changedStyle;
 };
 
@@ -87,17 +94,16 @@ const makeTextStyle = (
       'The passed layout direction should be either "ltr" or "rtl"',
     );
   }
-  let flatedStyles = StyleSheet.flatten(styles);
+  let flattenedStyles = StyleSheet.flatten(styles);
 
   if (direction === 'ltr') {
-    return flatedStyles;
+    return flattenedStyles;
   }
-
-  flatedStyles = makeLayoutStyle(flatedStyles, direction);
+  flattenedStyles = makeLayoutStyle(flattenedStyles, direction);
 
   const changedStyle: StyleProp<ViewStyle> = {};
 
-  Object.entries(flatedStyles).forEach(style => {
+  Object.entries(flattenedStyles).forEach(style => {
     let key = style[0];
     let value = style[1];
 
