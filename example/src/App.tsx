@@ -1,14 +1,13 @@
 import * as React from 'react';
-import {Container, FastBaseProvider} from '@fast-base/native';
+import {FastBaseProvider} from '@fast-base/native';
+import TweetApp from './TweetApp';
 
 const theme = 'dark';
 
 export default function App() {
   return (
     <FastBaseProvider dir="ltr" mode={theme}>
-      <Container>
-        <></>
-      </Container>
+      <TweetApp />
     </FastBaseProvider>
   );
 }
