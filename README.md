@@ -9,7 +9,7 @@
 </p>
 
 <div align="center">
-  ⭐️ Highly customizable - Responsive UI - Dark/Light mode support ⭐️
+  ⭐️ Highly customizable - Responsive UI - RTL Support - Dark/Light mode support ⭐️
 </div>
 
 <br />
@@ -36,6 +36,13 @@
 
 React native fast base UI kit will help you to develop your apps faster with optimized and tested components.
 
+Quick preview for RTL/LTR (English and Persian languages) and light/dark mode, featuring a fake tweet from Elon Musk about Fast Base! <a href="/example/src/TweetApp">Source here</a>
+<br />
+
+<p align="center">
+  <img src="./assets/tweet.gif" alt="tweet app" width="40%">
+</p>
+
 ## 💫 Features
 
 - <strong>Cross-platform</strong>
@@ -49,6 +56,8 @@ React native fast base UI kit will help you to develop your apps faster with opt
 
 - <strong>Dark/Light mode support</strong>
 - <strong>Attractive components</strong>
+
+- <strong>RTL/LTR support as local and globally</strong>
 
 - <strong>Written by Typescript, fully typed, and extendable</strong>
 

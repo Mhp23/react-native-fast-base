@@ -92,6 +92,14 @@ Default: Based on your device mode will be set.
 
 Description: To set the current application theme mode.
 
+### <i>dir</i>
+
+Type: `"ltr" | "rtl"`
+
+Default: `ltr`
+
+Description: To set the current application layout direction globally.
+
 ### <i>enableSystemMode</i>
 
 Type: `boolean`
@@ -223,6 +231,14 @@ changeMode('dark' | 'light', async newTheme => {
 
 Flexible and customizable components to implement your layouts as default will not add unnecessary style to the styles and unused styles will be removed. The component was extended from <a href="https://reactnative.dev/docs/view">React Native View</a> component so you are able to use all of the View component properties too.
 
+### <i>dir</i>
+
+Type: `"ltr" | "rtl"`
+
+Default: `ltr`
+
+To set the current component layout direction locally, it has a higher priority against the global direction. Additionally, when using **_dir_** locally in the Wrapper, its children will inherit the direction and won't need to specify **_dir_** themselves.
+
 ### <i>mode</i>
 
 Type: `'normal' | 'column' | 'column-reverse' | 'row' | 'row-reverse'`
@@ -296,6 +312,14 @@ Would you like to learn more about `Wrapper` usage, <a href="/example/src/Wrappe
 
 The Container component was implemented by `SafeAreaView` in `react-native-safe-area-context` to create a full-screen layout to put other components on a screen inside it, so you are able to use all properties of the component. In additional:
 
+### <i>dir</i>
+
+Type: `"ltr" | "rtl"`
+
+Default: `ltr`
+
+To set the current component layout direction locally, it has a higher priority against the global direction. Additionally, when using **_dir_** locally in the Container, its children will inherit the direction and won't need to specify **_dir_** themselves.
+
 ### <i>background</i>
 
 Type: `AllColorsType | string`
@@ -324,6 +348,14 @@ Would you like to learn more about `Container` usage, <a href="/example/src/Cont
 ## Text
 
 Text component extended from <a href="https://reactnative.dev/docs/text">React Native Text</a> so you capable of to use all the component props in the Text component, in additional:
+
+### <i>dir</i>
+
+Type: `"ltr" | "rtl"`
+
+Default: `ltr`
+
+To set the current component layout direction locally, it has a higher priority against the global direction.
 
 ### <i>size</i>
 
@@ -379,6 +411,14 @@ Would you like to learn more about `Text` usage, <a href="/example/src/TextGapEx
 ## Button
 
 The Button component was extended from <a href="https://reactnative.dev/docs/pressable">React Native Pressable</a> component so you are able to use all of the component properties and also it helps you create attractive customizable opacity and pressable buttons with title or custom children.
+
+### <i>dir</i>
+
+Type: `"ltr" | "rtl"`
+
+Default: `ltr`
+
+To set the current component layout direction locally, it has a higher priority against the global direction. Additionally, when using **_dir_** locally in the Button and it has children, the children will inherit the direction and won't need to specify **_dir_** themselves.
 
 ### <i>children</i>
 
@@ -516,6 +556,14 @@ Another component that is commonly used in applications is text input. The Input
 </p>
 
 ### Common Props
+
+### <i>dir</i>
+
+Type: `"ltr" | "rtl"`
+
+Default: `ltr`
+
+To set the current component layout direction locally, it has a higher priority against the global direction.
 
 ### <i>disabled</i>
 
@@ -720,6 +768,14 @@ Would you like to learn more about `Input` usage, <a href="/example/src/InputExa
 
 One of the other components used in almost all applications is Image, This component is extended from <a href="https://reactnative.dev/docs/image">React Native Image</a> component so you are able to use all of the component properties. In additional:
 
+### <i>dir</i>
+
+Type: `"ltr" | "rtl"`
+
+Default: `ltr`
+
+To set the current component layout direction locally, it has a higher priority against the global direction.
+
 ### <i>size</i>
 
 Type: `xs | sm | md | lg | xl | 2xl`
@@ -774,6 +830,14 @@ Would you like to learn more about `Image` usage, <a href="/example/src/ImageExa
 ## Divider
 
 This component will help you make `vertical` or `horizontal` space between your elements as `padding` or `border`.
+
+### <i>dir</i>
+
+Type: `"ltr" | "rtl"`
+
+Default: `ltr`
+
+To set the current component layout direction locally, it has a higher priority against the global direction.
 
 ### <i>direction</i>
 
@@ -860,6 +924,14 @@ Would you like to learn more about `Gap` usage, <a href="/example/src/TextGapExa
 
 This component will help when you want to show a progress bar such as download/upload or loading indicator with progress or whatever you want.
 
+### <i>dir</i>
+
+Type: `"ltr" | "rtl"`
+
+Default: `ltr`
+
+To set the current component layout direction locally, it has a higher priority against the global direction.
+
 ### <i>value</i>
 
 Type: `number`
@@ -901,12 +973,6 @@ Type: `boolean`
 Default: `true`
 
 To specify the component animations use native driver or JS bridge
-
-### <i>isRTL</i>
-
-Type: `boolean`
-
-To fill progress bar right to left
 
 Would you like to learn more about `ProgressBar` usage, <a href="/example/src/ProgressExample/index.tsx">see the example</a>
 <br />
