@@ -939,4 +939,6 @@ const allRefs = mergeRefs([ref1, ref2, ...])
 
 ## 5. 🚶‍♂️ V1 -> V2
 
-In V2 some of the unnecessary components were removed, also `Icon` component that was in version V1 was removed because it had been used from react-native-vector-icons, as default it doesn't support Expo, and one of the most important goals of the fast base, it is to be completely compatible for both bar React Native and Expo, but in the future (soon) Icon component will be added with new implementation to the project.
+In V2, some unnecessary components were removed. Additionally, the Icon component from version V1 was removed because it was being used from react-native-vector-icons, which does not support Expo by default. One of the most important goals of Fast Base is to be completely compatible with both bare React Native and Expo.
+
+Icons have been developed as an independent project. If you need modern and customizable icons, <a target="blank" href="https://github.com/Mhp23/fast-base-icons">please see here</a>.
