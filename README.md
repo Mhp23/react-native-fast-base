@@ -40,7 +40,7 @@ Quick preview for RTL/LTR (English and Persian languages) and light/dark mode, f
 <br />
 
 <p align="center">
-  <img src="./assets/tweet.gif" alt="tweet app" width="40%">
+  <img src="./assets/tweet.gif" alt="tweet app" width="60%">
 </p>
 
 ## 💫 Features
