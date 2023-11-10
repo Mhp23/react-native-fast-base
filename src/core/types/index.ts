@@ -388,7 +388,10 @@ export interface ButtonProps extends PressableProps {
   titleColor: AllColorsType;
 
   titleProps: Omit<TextProps, 'style'>;
-
+  /**
+   * if the children of the button are not a string or it doesn't have a title,
+   * the default radius value will be zero.
+   */
   radius: SizeType | number;
   /**
    * only works on solid mode

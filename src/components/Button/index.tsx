@@ -48,13 +48,13 @@ const Button = React.forwardRef<any, Partial<PropsWithLayout<ButtonProps>>>(
       loadingProps,
       loadingColor,
       opacityConfig,
-      radius = 'xs',
       mode = 'solid',
       dir: direction,
       pressableConfig,
       disabledTitleStyle,
       disabledTitleColor,
       disabledButtonColor,
+      radius = typeof children === 'string' || !!title ? 'xs' : 0,
       size = typeof children === 'string' || !!title ? 'md' : undefined,
       type = typeof children === 'string' || !!title ? 'primary' : undefined,
       onPress,
@@ -76,6 +76,10 @@ const Button = React.forwardRef<any, Partial<PropsWithLayout<ButtonProps>>>(
         ...opacityConfig?.pressIn,
       },
     });
+
+    const hasTitle = React.useMemo(() => {
+      return typeof children === 'string' || !!title;
+    }, [children, title]);
 
     const textColor = React.useMemo(() => {
       const selectedColor = disabled
@@ -134,26 +138,32 @@ const Button = React.forwardRef<any, Partial<PropsWithLayout<ButtonProps>>>(
           paddingHorizontal: rs(DefaultSizes[size]) * 1.2,
         };
       }
+      if (hasTitle) {
+        appliedStyles = {
+          ...appliedStyles,
+          alignItems: 'center',
+        };
+      }
       return {
         ...appliedStyles,
         overflow: 'hidden',
-        alignItems: 'center',
         borderRadius: rs(
           typeof radius === 'number' ? radius : DefaultSizes[radius] / 2,
         ),
       };
     }, [
-      rs,
-      size,
-      type,
-      mode,
-      color,
-      radius,
-      shadow,
       disabled,
-      borderColor,
       disabledButtonColor,
       colors?.disabled,
+      color,
+      type,
+      mode,
+      shadow,
+      size,
+      hasTitle,
+      rs,
+      borderColor,
+      radius,
     ]);
 
     const memorizedTitleStyle = useStyle<TextStyle>(() => {
@@ -268,7 +278,7 @@ const Button = React.forwardRef<any, Partial<PropsWithLayout<ButtonProps>>>(
               {...loadingProps}
               style={loadingLayoutStyle}
             />
-          ) : typeof children === 'string' || !!title ? (
+          ) : hasTitle ? (
             <Text
               testID="FAST_BASE_BUTTON_TITLE"
               style={textLayoutStyle}

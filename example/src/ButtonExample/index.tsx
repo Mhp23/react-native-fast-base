@@ -33,7 +33,7 @@ const ButtonExample: React.FC = () => {
           type="secondary"
           title="Pressable & Opacity Button"
         />
-        <Button size="xl" pressable color="gray-600">
+        <Button pressable color="gray-600">
           <Gap space={10} behavior="style">
             <Text color="gray-100" size="lg">
               It's a title!
